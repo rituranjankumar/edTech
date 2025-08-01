@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 4000;
 
 const allowedOrigins = [
   "https://ed-tech-frontend-two.vercel.app",
+  "http://localhost:3000",
   "https://ed-tech-frontend-git-main-rituranjan-kumars-projects.vercel.app",
   "https://ed-tech-frontend-erh9axy9l-rituranjan-kumars-projects.vercel.app",
   "https://ed-tech-frontend-rituranjan-kumars-projects.vercel.app"

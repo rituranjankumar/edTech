@@ -57,7 +57,7 @@ const ContactUsForm = ({ onSubmit }) => {
         }
     }, [isSubmitSuccessful])
     return (
-       <form className='w-full max-w-maxContent mx-auto px-2 sm:px-4' onSubmit={handleSubmit(submitHandler)}>
+       <form className='w-full flex-col flex-1 max-w-maxContent mx-auto    px-0 xs:px-0 md:px-2' onSubmit={handleSubmit(submitHandler)}>
   {/* First & Last Name */}
   <div className='flex flex-col sm:flex-row w-full gap-4 sm:gap-10 items-stretch mt-2'>
     <div className='flex flex-col w-full sm:w-1/2 gap-2'>

@@ -13,7 +13,7 @@ import ReviewSlider from '../components/common/ReviewSlider'
 
 const About = () => {
     return (
-      <div className='mx-auto flex flex-col justify-center items-center mt-[50px] md:mt-[80px] lg:mt-[100px] text-white px-4 sm:px-6 lg:px-0'>
+      <div className='flex flex-col lg:flex-row justify-center lg:justify-evenly items-start gap-10 p-6 sm:p-10 lg:p-14 text-white w-full'>
   {/* Section 1 */}
   <section className='flex relative flex-col justify-center items-center w-full'>
     <div className='w-full'>

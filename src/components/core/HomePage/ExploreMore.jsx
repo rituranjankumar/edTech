@@ -31,7 +31,7 @@ const ExploreMore = () => {
     console.log("current card -> ",currentCard);
 
   return (
-   <div className="relative">
+   <div className=" ">
   {/* Header Section */}
   <div className='text-2xl sm:text-3xl lg:text-4xl font-semibold text-center'>
     Unlock the 
@@ -43,7 +43,7 @@ const ExploreMore = () => {
   </p>  
 
   {/* Tabs Navigation */}
-  <div className='mt-4 sm:mt-5 flex flex-row rounded-full bg-richblack-800 mb-4 sm:mb-5 border-richblack-100 px-1 py-1 w-full sm:w-auto sm:max-w-max mx-auto overflow-x-auto sm:overflow-visible'>
+  <div className=' mt-4 sm:mt-5 hidden sm:flex  sm:flex-row md:flex-row rounded-full bg-richblack-800 mb-4 sm:mb-5 border-richblack-100 px-1 py-1 w-full sm:w-auto sm:max-w-max mx-auto overflow-x-auto sm:overflow-visible'>
     {
       tabsName.map((element, index) => {
         return (
@@ -68,9 +68,9 @@ const ExploreMore = () => {
   <div className='h-[50px] sm:h-[100px] lg:h-[150px]'></div>  
 
   {/* Course Cards Group */}
-  <div className='bg-white rounded-xl sm:left-[-30px] absolute bottom-[-80px] sm:bottom-[-120px] text-richblack-900 p-2 sm:p-4 flex flex-col xs:flex-row gap-3 sm:gap-5 lg:gap-10 justify-between w-full overflow-x-auto'>
+  <div className='bg-white rounded-xl sm:flex-col md:flex-row lg:flex-row xl:flex-row flex-wrap sm:left-[-30px]   bottom-[-80px] sm:bottom-[-120px] text-richblack-900 p-2 sm:p-4 flex flex-col xs:flex-row gap-3 sm:gap-5 lg:gap-10 justify-between w-full overflow-x-auto'>
     {
-      courses.map((element, index) => {
+      courses?.map((element, index) => {
         return (
           <CourseCard 
             key={index}

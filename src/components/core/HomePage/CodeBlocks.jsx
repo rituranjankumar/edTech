@@ -19,7 +19,7 @@ const CodeBlocks = ({
 
         <div className='flex flex-col xs:flex-row gap-3 sm:gap-5 lg:gap-7 mt-5 sm:mt-6 lg:mt-7'>
             <CTAButton active={ctabtn1.active} linkto={ctabtn1.linkto}>
-                <div className='flex gap-1 sm:gap-2 items-center text-xs sm:text-sm lg:text-base'>
+                <div className='flex gap-1 sm:gap-2 items-center justify-center text-xs sm:text-sm lg:text-base'>
                     {ctabtn1.btnText}
                     <FaArrowRight className="text-xs sm:text-sm"/>
                 </div>
