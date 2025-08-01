@@ -17,7 +17,7 @@ const cookieParser=require("cookie-parser");
 // Middleware and routes setup
 app.use(express.json());
 app.use(cookieParser());
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4000;
  app.use(cors({
     origin: "http://localhost:3000",      // Allow all origins; consider restricting this for production.
     credentials: true  
