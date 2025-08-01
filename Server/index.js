@@ -18,10 +18,24 @@ const cookieParser=require("cookie-parser");
 app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 4000;
- app.use(cors({
-    origin: "https://ed-tech-frontend-two.vercel.app",      // Allow all origins; consider restricting this for production.
-    credentials: true  
+
+const allowedOrigins = [
+  "https://ed-tech-frontend-two.vercel.app",
+  "https://ed-tech-frontend-git-main-rituranjan-kumars-projects.vercel.app",
+  "https://ed-tech-frontend-erh9axy9l-rituranjan-kumars-projects.vercel.app",
+  "https://ed-tech-frontend-rituranjan-kumars-projects.vercel.app"
+];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error("Not allowed by CORS")); // Block the request
+    }
+  },
+  credentials: true,
 }));
+
 
 //middleware for cloudinary
 const fileUpload=require("express-fileupload");
