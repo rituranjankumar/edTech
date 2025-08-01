@@ -53,63 +53,65 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
 
     return (
         <>
-           <div className="flex h-[calc(100vh-3.5rem)] w-full flex-col md:w-[320px] border-r border-r-richblack-700 bg-richblack-800">
+     <div className="flex h-[calc(100vh-3.5rem)] w-full flex-col   border-r border-r-richblack-700 bg-richblack-800">
   {/* Buttons and Heading */}
-  <div className="mx-3 sm:mx-4 flex flex-col items-start justify-between gap-3 sm:gap-4 border-b border-richblack-600 py-4 sm:py-5 text-base sm:text-lg font-bold text-richblack-25">
+  <div className="mx-3 sm:mx-4 flex flex-col items-start justify-between gap-3 sm:gap-4 border-b border-richblack-600 py-4 sm:py-5">
     {/* Navigation Buttons */}
-    <div className="flex w-full items-center justify-between gap-1 sm:gap-2">
-      <div
+    <div className="flex w-full items-center justify-between gap-2">
+      <button
         onClick={() => navigate("/dashboard/enrolled-courses")}
-        className="flex h-[32px] sm:h-[35px] w-[70px] sm:w-[80px] cursor-pointer items-center justify-center gap-1 sm:gap-2 rounded-lg bg-richblack-600 text-center text-xs sm:text-sm font-medium hover:bg-richblack-500"
+        className="flex h-8 sm:h-9 items-center gap-1 sm:gap-2 rounded-lg bg-richblack-600 px-3 sm:px-4 text-xs sm:text-sm font-medium text-richblack-25 hover:bg-richblack-500 transition-colors"
       >
-        <FaBackward size={14} className="sm:w-auto" />
-        Back
-      </div>
-      <IconBtn
-        text="Add Review"
+        <FaBackward size={14} />
+        <span>Back</span>
+      </button>
+      <button
         onClick={() => setReviewModal(true)}
-        customClasses="ml-auto"
-        className="bg-yellow-400 px-1 py-0.5 rounded-md text-richblack-50 hover:bg-yellow-500 text-xs sm:text-sm"
-      />
+        className="ml-auto flex items-center gap-1 bg-yellow-400 hover:bg-yellow-500 text-richblack-900 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-md transition-colors"
+      >
+        <span>Add Review</span>
+      </button>
     </div>
 
     {/* Course Title */}
-    <div className="flex flex-col">
-      <p className="text-base sm:text-lg font-semibold">{courseEntireData?.courseName}</p>
-      <p className="text-xs sm:text-sm text-richblack-400">
+    <div className="flex flex-col mt-2 sm:mt-3">
+      <p className="text-base sm:text-lg font-semibold text-richblack-5">
+        {courseEntireData?.courseName}
+      </p>
+      <p className="text-xs sm:text-sm text-richblack-400 mt-1">
         {completedLectures?.length} / {totalNoOfLectures} lectures completed
       </p>
     </div>
   </div>
 
   {/* Sections and SubSections */}
-  <div className="h-[calc(100vh-5rem)] overflow-y-auto">
+  <div className="h-[calc(100vh-5rem)] overflow-y-auto px-2 sm:px-3">
     {courseSectionData.map((course, index) => (
       <div
         key={index}
-        className="mt-1 sm:mt-2 cursor-pointer text-xs sm:text-sm text-richblack-5"
+        className="mt-1 sm:mt-2 cursor-pointer"
         onClick={() =>
           activeStatus ? setActiveStatus("") : setActiveStatus(course?._id)
         }
       >
-        {/* Section */}
-        <div className="flex flex-col rounded-lg bg-richblack-700 px-3 sm:px-5 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
+        {/* Section Header */}
+        <div className="flex items-center justify-between rounded-lg bg-richblack-700 px-3 sm:px-4 py-3 text-richblack-5">
+          <span className="text-xs sm:text-sm font-medium">
             {course?.sectionName}
-            <div className="text-lg sm:text-xl">
-              {activeStatus === course?._id ? (
-                <IoIosArrowDropdown />
-              ) : (
-                <IoIosArrowDropup />
-              )}
-            </div>
-          </div>
+          </span>
+          <span className="text-lg sm:text-xl">
+            {activeStatus === course?._id ? (
+              <IoIosArrowDropdown />
+            ) : (
+              <IoIosArrowDropup />
+            )}
+          </span>
         </div>
 
-        {/* SubSections */}
-        <div className="transition-all duration-500 ease-in-out">
+        {/* SubSections - Animated Dropdown */}
+        <div className="transition-all duration-300 ease-in-out overflow-hidden">
           {activeStatus === course?._id && (
-            <div className="mt-1">
+            <div className="mt-1 space-y-1">
               {course?.subSection?.map((topic, subIndex) => (
                 <div
                   key={subIndex}
@@ -120,19 +122,19 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                     );
                     setVideoBarActive(topic?._id);
                   }}
-                  className={`flex cursor-pointer gap-3 sm:gap-5 rounded px-2 sm:px-3 py-1 sm:py-2 ${
+                  className={`flex items-center gap-3 sm:gap-4 rounded px-3 py-2 cursor-pointer ${
                     videoBarActive === topic._id
                       ? "bg-yellow-200 text-richblack-900"
-                      : "bg-richblack-900 text-white hover:bg-richblack-800"
-                  }`}
+                      : "bg-richblack-900 text-richblack-5 hover:bg-richblack-800"
+                  } transition-colors`}
                 >
                   <input
                     type="checkbox"
                     checked={completedLectures.includes(topic?._id)}
                     onChange={() => {}}
-                    className="h-3 w-3 sm:h-4 sm:w-4 rounded border-richblack-300 text-yellow-100 focus:ring-yellow-100"
+                    className="h-3 w-3 sm:h-4 sm:w-4 rounded border-richblack-300 bg-richblack-700 text-yellow-400 focus:ring-yellow-400"
                   />
-                  <span className="text-xs sm:text-sm">{topic.title}</span>
+                  <span className="text-xs sm:text-sm truncate">{topic.title}</span>
                 </div>
               ))}
             </div>

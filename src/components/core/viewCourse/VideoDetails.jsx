@@ -175,9 +175,9 @@ const VideoDetails = () => {
 
   }
   return (
-   <div className='w-full flex flex-col min-h-screen px-2 sm:px-4 md:px-6'>
+  <div className='w-full flex flex-col min-h-screen px-2 sm:px-4 md:px-6 lg:px-8'>
   {!videoData || !videoData.videoUrl ? (
-    <div className='w-full flex items-center justify-center text-xl sm:text-2xl font-bold text-center py-8'>
+    <div className='w-full flex items-center justify-center text-xl sm:text-2xl md:text-3xl font-bold text-center py-8 sm:py-10 md:py-12'>
       No Data Found
     </div>
   ) : (
@@ -193,7 +193,7 @@ const VideoDetails = () => {
         }}
         src={videoData?.videoUrl}
       >
-        <ControlBar className="text-sm sm:text-base">
+        <ControlBar className="text-xs sm:text-xs md:text-base">
           <LoadingSpinner />
           <ReplayControl seconds={10} order={2.1} />
           <ForwardControl seconds={10} order={3.1} />
@@ -202,18 +202,18 @@ const VideoDetails = () => {
       </Player>
 
       {videoEnded && (
-        <div className='bg-opacity-50 p-4 bg-richblack-700 backdrop-blur-sm z-50 absolute w-full h-full gap-3 sm:gap-4 text-white flex inset-0 flex-col items-center justify-center'>
+        <div className='bg-opacity-50 p-4 sm:p-5 md:p-6 bg-richblack-700 backdrop-blur-sm z-50 absolute w-full h-full gap-3 sm:gap-4 md:gap-5 text-white flex inset-0 flex-col items-center justify-center'>
           {!completedLectures.includes(subSectionId) && (
             <IconBtn
               disabled={loading}
               onClick={handleLectureCompletion}
               text={!loading ? "Mark As Completed" : "Loading..."}
-              className='bg-yellow-50 rounded px-3 py-1.5 sm:py-2 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
+              className='bg-yellow-50 rounded px-3 sm:px-4 py-1.5 sm:py-2 md:py-2.5 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
             />
           )}
 
           <IconBtn
-            className='text-sm sm:text-base md:text-lg bg-yellow-50 rounded px-3 py-1.5 sm:py-2 text-richblack-800 hover:bg-yellow-100'
+            className='bg-yellow-50 rounded px-3 sm:px-4 py-1.5 sm:py-2 md:py-2.5 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
             disabled={loading}
             onClick={() => {
               if (playerRef?.current) {
@@ -226,14 +226,14 @@ const VideoDetails = () => {
             text="Rewatch"
           />
 
-          <div className='flex items-center gap-2 flex-wrap justify-center'>
+          <div className='flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap justify-center'>
             {!isFirstVideo() && (
               <button
                 disabled={loading}
                 onClick={goToPrevVideo}
-                className='bg-yellow-50 flex justify-between items-center gap-1 rounded px-3 py-1.5 sm:py-2 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
+                className='bg-yellow-50 flex justify-between items-center gap-1 sm:gap-2 rounded px-3 sm:px-4 py-1.5 sm:py-2 md:py-2.5 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
               >
-                <FaArrowLeft size={14} className="sm:w-auto" />
+                <FaArrowLeft size={14} className="sm:w-4 md:w-5" />
                 Prev
               </button>
             )}
@@ -241,9 +241,9 @@ const VideoDetails = () => {
               <button
                 disabled={loading}
                 onClick={goToNextVideo}
-                className='bg-yellow-50 rounded px-3 py-1.5 sm:py-2 flex justify-between gap-1 items-center text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
+                className='bg-yellow-50 rounded px-3 sm:px-4 py-1.5 sm:py-2 md:py-2.5 flex justify-between gap-1 sm:gap-2 items-center text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
               >
-                <FaArrowRight size={14} className="sm:w-auto" />
+                <FaArrowRight size={14} className="sm:w-4 md:w-5" />
                 Next
               </button>
             )}
@@ -253,11 +253,11 @@ const VideoDetails = () => {
     </div>
   )}
 
-  <div className="bg-richblack-700 p-3 sm:p-4 mt-3 sm:mt-4 text-xs sm:text-sm md:text-base">
-    <h1 className="text-white text-base sm:text-lg font-semibold break-words">
+  <div className="bg-richblack-700 p-3 sm:p-4 md:p-5 mt-3 sm:mt-4 md:mt-5 text-xs sm:text-sm md:text-base">
+    <h1 className="text-white text-base sm:text-lg md:text-xl font-semibold break-words">
       Video Title: {videoData?.title}
     </h1>
-    <p className="text-richblack-50 mt-1 sm:mt-2 break-words">
+    <p className="text-richblack-50 mt-1 sm:mt-2 md:mt-3 break-words">
       Video Description: {videoData?.description}
     </p>
   </div>
