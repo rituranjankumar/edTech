@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 4000;
  app.use(cors({
-    origin: "http://localhost:3000",      // Allow all origins; consider restricting this for production.
+    origin: "https://ed-tech-frontend-8hzkptcio-rituranjan-kumars-projects.vercel.app/",      // Allow all origins; consider restricting this for production.
     credentials: true  
 }));
 
