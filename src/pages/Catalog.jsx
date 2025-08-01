@@ -53,93 +53,90 @@ const Catalog = () => {
   //console.log("new course",catalogPageData?.data?.differentCategoryCourses )  ;
 
   return (
-    <div>
-      {categoryId ? (
-        <div className="text-white  bg-richblack-900 min-h-screen">
-          {/* Breadcrumb */}
-          <div className="px-6 py-6 lg:px-20">
-            <p className="text-sm text-richblack-300">
-              Home / Catalog /{" "}
-              <span className="text-yellow-50 font-medium">
-                {selectedCategory?.name}
-              </span>
-            </p>
-            <h1 className="text-3xl font-semibold mt-2">
-              {selectedCategory?.name}
-            </h1>
-            <p className="text-richblack-200 mt-2">
-              {selectedCategory?.description}
-            </p>
+   <div>
+  {categoryId ? (
+    <div className="text-white bg-richblack-900 min-h-screen">
+      {/* Breadcrumb */}
+      <div className="px-4 sm:px-6 lg:px-20 py-4 sm:py-6">
+        <p className="text-xs sm:text-sm text-richblack-300">
+          Home / Catalog /{" "}
+          <span className="text-yellow-50 font-medium">
+            {selectedCategory?.name}
+          </span>
+        </p>
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold mt-1 sm:mt-2">
+          {selectedCategory?.name}
+        </h1>
+        <p className="text-richblack-200 text-sm sm:text-base mt-1 sm:mt-2">
+          {selectedCategory?.description}
+        </p>
+      </div>
+
+      {/* Courses Section */}
+      <div className="px-4 sm:px-6 lg:px-20 space-y-8 sm:space-y-12">
+        {/* Section 1: Courses to get started */}
+        <div className="flex flex-col">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4">
+            Courses to get you started
+          </h2>
+          
+          {/* Tabs */}
+          <div className="flex bg-richblack-800 rounded-lg sm:rounded-xl w-fit sm:w-fit mb-4 sm:mb-6">
+            {["popular", "new"].map((tab) => (
+              <button
+                key={tab}
+                className={`px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 w-1/2 sm:w-auto text-center
+                  ${
+                    activeTab === tab
+                      ? "bg-richblack-200 text-richblack-900 border-yellow-100"
+                      : "bg-richblack-700 text-richblack-100 border-richblack-700 hover:bg-richblack-700"
+                  }`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab === "popular" ? "Most Popular" : "New"}
+              </button>
+            ))}
           </div>
-
-          {/* Courses Section */}
-          <div className="px-6 lg:px-20 space-y-12">
-            {/* Section 1: Courses to get started */}
-            <div className="flex flex-col ">
-              <h2 className="text-2xl font-semibold mb-4">
-                Courses to get you started
-              </h2>{" "}
-               
-              {/* Tabs */}
-              <div className="  flex bg-richblack-800 rounded-xl w-fit       mb-6">
-                {" "}
-                 
-                {["popular", "new"].map((tab) => (
-                  <button
-                    key={tab}
-                    className={`px-4 py-2 rounded-xl border text-sm font-medium transition-all duration-200
-                  ${activeTab === tab
-                        ? "bg-richblack-200 text-richblack-900 border-yellow-100"
-                        : "bg-richblack-700 text-richblack-100 border-richblack-700 hover:bg-richblack-700"
-                      }`}
-                    onClick={() => setActiveTab(tab)}
-                  >
-                    {tab === "popular" ? "Most Popular" : "New"}
-                  </button>
-                ))}
-              </div>
-              {/* Course Slider */}
-              <CourseSlider
-                Courses={activeTab === "popular" ? popularCourses : newCourses}
-              />{" "}
-             
-            </div>
-
-            {/* Section 2: Top Courses in Category */}
-            <div>
-              <h2 className="text-2xl font-semibold mb-4">
-                Top Courses in {selectedCategory?.name}
-              </h2>{" "}
-              
-              <CourseSlider Courses={popularCourses || []} /> {/* 🔥 CHANGED */}
-            </div>
-
-            {/* Section 3: Frequently Bought */}
-            <div>
-              <h2 className="text-2xl font-semibold mb-4">Frequently Bought</h2>{" "}
-             
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-6">
-                {" "}
-                
-                {catalogPageData?.data?.topSellingCourse
-                  ?.slice(0, 4)
-                  .map((course, index) => (
-                    <Course_Card
-                      course={course}
-                      key={index}
-                      Height={"h-[400px]"}
-                    />
-                  ))}
-              </div>
-            </div>
-          </div>
-
-          <Footer />
+          
+          {/* Course Slider */}
+          <CourseSlider
+            Courses={activeTab === "popular" ? popularCourses : newCourses}
+          />
         </div>
-      ) : (
-        <div className="text-white">No data is present</div>
-      )}
+
+        {/* Section 2: Top Courses in Category */}
+        <div>
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4">
+            Top Courses in {selectedCategory?.name}
+          </h2>
+          <CourseSlider Courses={popularCourses || []} />
+        </div>
+
+        {/* Section 3: Frequently Bought */}
+        <div>
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4">
+            Frequently Bought
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 py-4 sm:py-6">
+            {catalogPageData?.data?.topSellingCourse
+              ?.slice(0, 4)
+              .map((course, index) => (
+                <Course_Card
+                  course={course}
+                  key={index}
+                  Height={"h-[300px] sm:h-[350px] lg:h-[400px]"}
+                />
+              ))}
+          </div>
+        </div>
+      </div>
+
+      <Footer />
     </div>
+  ) : (
+    <div className="text-white p-4 text-center">No data is present</div>
+  )}
+</div>
   );
 };
 

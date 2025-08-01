@@ -18,15 +18,17 @@ if(profileLoading || authLoading)
     )
 }
   return (
-    <div className='relative flex min-h-[calc(100vh-3.5rem)]'> 
-    <Sidebar/>
-    
-    <div className='min-h-[calc(100vh-3.5rem)] w-11/12 overflow-auto'>
-            <div className='mx-auto w-11/12   max-w-[1000px] py-10'>
-                <Outlet/>
-            </div>
+    <div className='relative flex min-h-[calc(100vh-3.5rem)]'>
+   
+    <Sidebar />
+   
+  
+  <div className='min-h-[calc(100vh-3.5rem)] w-full md:w-11/12 overflow-auto'>
+    <div className='mx-auto w-11/12 max-w-[1000px] py-6 sm:py-8 md:py-10 px-4 sm:px-6'>
+      <Outlet />
     </div>
-    </div>
+  </div>
+</div>
   )
 }
 

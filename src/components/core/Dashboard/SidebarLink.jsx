@@ -25,22 +25,30 @@ const SidebarLink = ({ link, iconName }) => {
 
   return (
     <NavLink
-      to={link.path}
-      className={`border-l-4 px-4 text-sm font-medium transition-all py-2 rounded ${matchRoute(`/dashboard/${link.path}`)
-          ? 'bg-yellow-600 border-yellow-400 text-black rounded'
-          : 'bg-opacity-0 border-transparent'
-        }`}
-    >
-      <div className='flex items-center gap-x-2'>
-        {link.name === "Verify Instructor" ? (
-          <MdPendingActions className="text-lg text-richblack-50" />
-        ) : (
-          <Icon className="text-lg text-richblack-50" />
-        )}
-
-        <span className='text-richblack-50'>{link.name}</span>
-      </div>
-    </NavLink>
+  to={link.path}
+  className={`border-l-4 px-4 py-2 text-sm font-medium transition-all duration-200 rounded ${
+    matchRoute(`/dashboard/${link.path}`)
+      ? 'bg-yellow-600 border-yellow-400 text-black'
+      : 'bg-opacity-0 border-transparent hover:bg-richblack-700 hover:border-richblack-500'
+  }`}
+>
+  <div className='flex items-center gap-x-2'>
+    {link.name === "Verify Instructor" ? (
+      <MdPendingActions className={`text-lg ${
+        matchRoute(`/dashboard/${link.path}`) ? 'text-black' : 'text-richblack-50'
+      }`} />
+    ) : (
+      <Icon className={`text-lg ${
+        matchRoute(`/dashboard/${link.path}`) ? 'text-black' : 'text-richblack-50'
+      }`} />
+    )}
+    <span className={`${
+      matchRoute(`/dashboard/${link.path}`) ? 'text-black' : 'text-richblack-50'
+    }`}>
+      {link.name}
+    </span>
+  </div>
+</NavLink>
   )
 }
 

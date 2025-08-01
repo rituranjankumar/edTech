@@ -175,95 +175,93 @@ const VideoDetails = () => {
 
   }
   return (
-    <div className='w-full flex flex-col min-h-screen px-2 sm:px-4 md:px-6'>
-      {
-        !videoData || !videoData.videoUrl ? (
-          <div className='w-full flex items-center justify-center text-xl sm:text-2xl font-bold text-center'>
-            No Data Found
-          </div>
-        ) : (
-          <div className='w-full aspect-video relative max-w-full'>
-            <Player
-              ref={playerRef}
-              aspectRatio="16:9"
-              playsInline
-              autoPlay={true}
-              onEnded={() => {
-                console.log("video ended")
-                setVideoEnded(true)
-              }}
-              src={videoData?.videoUrl}
-            >
-              <ControlBar className="text-sm sm:text-base">
-                <LoadingSpinner />
-                <ReplayControl seconds={10} order={2.1} />
-                <ForwardControl seconds={10} order={3.1} />
-                <PlaybackRateMenuButton rates={[2, 1.5, 1.25, 1, 0.75, 0.5]} />
-              </ControlBar>
-            </Player>
+   <div className='w-full flex flex-col min-h-screen px-2 sm:px-4 md:px-6'>
+  {!videoData || !videoData.videoUrl ? (
+    <div className='w-full flex items-center justify-center text-xl sm:text-2xl font-bold text-center py-8'>
+      No Data Found
+    </div>
+  ) : (
+    <div className='w-full aspect-video relative max-w-full'>
+      <Player
+        ref={playerRef}
+        aspectRatio="16:9"
+        playsInline
+        autoPlay={true}
+        onEnded={() => {
+          console.log("video ended")
+          setVideoEnded(true)
+        }}
+        src={videoData?.videoUrl}
+      >
+        <ControlBar className="text-sm sm:text-base">
+          <LoadingSpinner />
+          <ReplayControl seconds={10} order={2.1} />
+          <ForwardControl seconds={10} order={3.1} />
+          <PlaybackRateMenuButton rates={[2, 1.5, 1.25, 1, 0.75, 0.5]} />
+        </ControlBar>
+      </Player>
 
-            {videoEnded && (
-              <div className='bg-opacity-50 p-4 bg-richblack-700 backdrop-blur-sm z-50 absolute w-full h-full gap-4 text-white flex inset-0 flex-col items-center justify-center'>
-                {!completedLectures.includes(subSectionId) && (
-                  <IconBtn
-                    disabled={loading}
-                    onClick={handleLectureCompletion}
-                    text={!loading ? "Mark As Completed" : "Loading..."}
-                    className='bg-yellow-50 rounded px-3 py-2 text-richblack-800 hover:bg-yellow-100 text-sm sm:text-base'
-                  />
-                )}
+      {videoEnded && (
+        <div className='bg-opacity-50 p-4 bg-richblack-700 backdrop-blur-sm z-50 absolute w-full h-full gap-3 sm:gap-4 text-white flex inset-0 flex-col items-center justify-center'>
+          {!completedLectures.includes(subSectionId) && (
+            <IconBtn
+              disabled={loading}
+              onClick={handleLectureCompletion}
+              text={!loading ? "Mark As Completed" : "Loading..."}
+              className='bg-yellow-50 rounded px-3 py-1.5 sm:py-2 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
+            />
+          )}
 
-                <IconBtn
-                  className='text-base sm:text-lg bg-yellow-50 rounded px-3 py-2 text-richblack-800 hover:bg-yellow-100'
-                  disabled={loading}
-                  onClick={() => {
-                    if (playerRef?.current) {
-                      console.log("video restarted")
-                      playerRef.current?.seek(0);
-                       playerRef.current?.play();
-                      setVideoEnded(false);
-                    }
-                  }}
-                  text="Rewatch"
-                />
+          <IconBtn
+            className='text-sm sm:text-base md:text-lg bg-yellow-50 rounded px-3 py-1.5 sm:py-2 text-richblack-800 hover:bg-yellow-100'
+            disabled={loading}
+            onClick={() => {
+              if (playerRef?.current) {
+                console.log("video restarted")
+                playerRef.current?.seek(0);
+                playerRef.current?.play();
+                setVideoEnded(false);
+              }
+            }}
+            text="Rewatch"
+          />
 
-                <div className='flex items-center gap-2 flex-wrap justify-center'>
-                  {!isFirstVideo() && (
-                    <button
-                      disabled={loading}
-                      onClick={goToPrevVideo}
-                      className='bg-yellow-50 flex justify-between items-center gap-1 rounded px-3 py-2 text-richblack-800 hover:bg-yellow-100 text-sm sm:text-base'
-                    >
-                      <FaArrowLeft />
-                      Prev
-                    </button>
-                  )}
-                  {!isLastVideo() && (
-                    <button
-                      disabled={loading}
-                      onClick={goToNextVideo}
-                      className='bg-yellow-50 rounded px-3 py-2 flex justify-between gap-1 items-center text-richblack-800 hover:bg-yellow-100 text-sm sm:text-base'
-                    >
-                      <FaArrowRight />
-                      Next
-                    </button>
-                  )}
-                </div>
-              </div>
+          <div className='flex items-center gap-2 flex-wrap justify-center'>
+            {!isFirstVideo() && (
+              <button
+                disabled={loading}
+                onClick={goToPrevVideo}
+                className='bg-yellow-50 flex justify-between items-center gap-1 rounded px-3 py-1.5 sm:py-2 text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
+              >
+                <FaArrowLeft size={14} className="sm:w-auto" />
+                Prev
+              </button>
+            )}
+            {!isLastVideo() && (
+              <button
+                disabled={loading}
+                onClick={goToNextVideo}
+                className='bg-yellow-50 rounded px-3 py-1.5 sm:py-2 flex justify-between gap-1 items-center text-richblack-800 hover:bg-yellow-100 text-xs sm:text-sm md:text-base'
+              >
+                <FaArrowRight size={14} className="sm:w-auto" />
+                Next
+              </button>
             )}
           </div>
-        )
-      }
-
-      <div className="bg-richblack-700 p-4 mt-4 text-sm sm:text-base">
-        <h1 className="text-white text-lg font-semibold break-words">
-          Video Title: {videoData?.title}
-        </h1>
-        <p className="text-richblack-50 mt-2 break-words">
-          Video Description: {videoData?.description}
-        </p>
-      </div>
+        </div>
+      )}
     </div>
+  )}
+
+  <div className="bg-richblack-700 p-3 sm:p-4 mt-3 sm:mt-4 text-xs sm:text-sm md:text-base">
+    <h1 className="text-white text-base sm:text-lg font-semibold break-words">
+      Video Title: {videoData?.title}
+    </h1>
+    <p className="text-richblack-50 mt-1 sm:mt-2 break-words">
+      Video Description: {videoData?.description}
+    </p>
+  </div>
+</div>
 
   )
 }

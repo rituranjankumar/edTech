@@ -47,53 +47,52 @@ const LearningGridArray = [
 
 const LearningGrid = () => {
   return (
-    <div className='grid  grid-col-1 lg:grid-cols-4 mb-10 p-5 lg:w-fit'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-10 p-5 lg:w-fit'>
     {
         LearningGridArray.map( (card, index) => {
             return (
                 <div
                 key={index}
-                className={`${index === 0 && "lg:col-span-2 lg:h-[280px] p-5"}
+                className={`${index === 0 && "lg:col-span-2 sm:col-span-2 lg:h-[280px] p-5"}
                 ${
-                    card.order % 2 === 1 ? "bg-richblack-700 lg:h-[280px] p-5" : "bg-richblack-800 lg:h-[280px] p-5"
+                    card.order % 2 === 1 ? "bg-richblack-700 lg:h-[280px] sm:h-[240px] p-5" : "bg-richblack-800 lg:h-[280px] sm:h-[240px] p-5"
                 }
-                ${card.order === 3 && "lg:col-start-2"}
-                ${card.order < 0 && "bg-transparent"}
+                ${card.order === 3 && "lg:col-start-2 sm:col-start-auto"}
+                ${card.order < 0 && "bg-transparent sm:col-span-2"}
                 `}
                 >
                 {
                     card.order < 0 
                     ? (
-                        <div className='lg:w-[90%] flex flex-col pb-5 gap-3'>
-                            <div className='text-4xl font-semibold'>
+                        <div className='lg:w-[90%] sm:w-full flex flex-col pb-5 gap-3'>
+                            <div className='text-2xl sm:text-3xl lg:text-4xl font-semibold'>
                                 {card.heading}
                                 <HighlightText text={card.highlightText} />
                             </div>
-                            <p className='font-medium'>
+                            <p className='text-sm sm:text-base font-medium'>
                                 {card.description}
                             </p>
-                            <div className='w-fit mt-4'>
+                            <div className='w-fit sm:w-fit mt-4'>
                                 <CTAButton active={true} linkto={card.BtnLink}>
                                     {card.BtnText}
                                 </CTAButton>
                             </div>
                         </div>
                     )
-                    : (<div className='flex flex-col gap-8 p-7'>
-                        <h1 className='text-richblack-5 text-lg'>
+                    : (<div className='flex flex-col gap-4 sm:gap-6 lg:gap-8 p-5 sm:p-6 lg:p-7'>
+                        <h1 className='text-richblack-5   text-base sm:text-lg'>
                             {card.heading}
                         </h1>
-                        <p className='text-richblack-300 font-medium'>
+                        <p className='text-richblack-300 text-sm sm:text-base font-medium'>
                             {card.description}
                         </p>
                     </div>)
                 }
-
                 </div>
             )
         } )
     } 
-    </div>
+</div>
   )
 }
 

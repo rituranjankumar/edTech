@@ -10,17 +10,20 @@ const ContactFormSection = () => {
 
 
   return (
-    <div className='mx-auto flex flex-col items-center justify-center'>
-      <h1 className='text-5xl'>
-        Get in Touch
-      </h1>
-      <p className='text-richblack-200 leading-4 my-6 '>
-        We'd love to here for you, Please fill out this form.
-      </p>
-      <div>
-        <ContactUsForm onSubmit={submitHandler} />
-      </div>
-    </div>
+   <div className="w-full min-h-screen flex flex-col items-center justify-center px-4 sm:px-0">
+  <h1 className="text-4xl sm:text-5xl font-semibold text-center text-richblack-5">
+    Get in Touch
+  </h1>
+  
+  <p className="text-richblack-200 text-center text-base sm:text-lg mt-4 mb-8 max-w-md">
+    We'd love to hear from you. Please fill out the form below.
+  </p>
+  
+  <div className="w-full max-w-2xl">
+    <ContactUsForm onSubmit={submitHandler} />
+  </div>
+</div>
+
   )
 }
 

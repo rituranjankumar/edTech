@@ -79,148 +79,143 @@ console.log("token in update profile ",token)
 
   return (
     <div className='p-6 max-w-4xl mx-auto bg-richblack-800 rounded-lg shadow-md'>
-      <p className='text-richblack-200 text-xl font-semibold mb-6'>Profile Picture</p>
+  <p className='text-richblack-200 text-xl font-semibold mb-6'>Profile Picture</p>
 
-      <div className="flex gap-6">
-        {/* Form grid - 3 rows, 2 cols */}
-        <form
-  onSubmit={handleSubmit(updateHandler)}
-  className="grid grid-rows-3 grid-cols-2 gap-6 max-w-4xl"
->
-  {/* Display Name */}
-  <div className="col-span-1">
-    <label htmlFor='name' className='block text-sm font-medium text-richblack-200 mb-1'>Display Name</label>
-    <input
-      id='name'
-      {...register("DisplayName")}
-      className='w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white placeholder-richblack-400 focus:outline-none focus:ring-2 focus:ring-yellow-500'
-    />
-    {errors.DisplayName && <span className='text-red-500 text-sm'>{errors.DisplayName.message}</span>}
-  </div>
-
-  {/* Profession */}
-  <div className="col-span-1">
-  <label
-    htmlFor='profession'
-    className='block text-sm font-medium text-richblack-200 mb-2'
-  >
-    Profession
-  </label>
- <select
-  id="profession"
-  {...register("profession")}
-  className="w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
->
-  <option value={user?.accountType}>{user?.accountType}</option>
-</select>
-
-  {errors.profession && (
-    <span className='text-red-500 text-sm mt-1 block'>
-      {errors.profession.message}
-    </span>
-  )}
-</div>
-
-
-  {/* Date of Birth */}
-  <div className="col-span-1 ">
-    <label htmlFor='birthdate' className='block text-sm font-medium text-richblack-200 mb-1'>Date Of Birth</label>
-    <input
-      type='date'
-      id='birthdate'
-      {...register("dateOfBirth")}
-      className='w-full p-3 rounded-md bg-richblack-700 cursor-pointer border border-richblack-600 text-white'
-    />
-    {errors.dateOfBirth && <span className='text-red-500 text-sm'>{errors.dateOfBirth.message}</span>}
-  </div>
-
-  {/* Gender */}
-<div className="col-span-1 bg-richblack-700 p-4 rounded-md">
-  <p className='text-sm font-medium text-richblack-200 mb-3 flex items-center gap-2'>
-    Gender <FaStarOfLife color='red' size={10} />
-  </p>
-  <div className='flex gap-8'>
-    <label className="flex items-center gap-3 text-richblack-100 cursor-pointer">
-      <input
-        type="radio"
-        value="Male"
-        {...register("gender", { required: true })}
-        className='accent-yellow-500 w-6 h-6'
-      />
-      Male
-    </label>
-
-    <label className="flex items-center gap-3 text-richblack-100 cursor-pointer">
-      <input
-        type="radio"
-        value="Female"
-        {...register("gender", { required: true })}
-        className='accent-yellow-500 w-6 h-6'
-      />
-      Female
-    </label>
-
-    <label className="flex items-center gap-3 text-richblack-100 cursor-pointer">
-      <input
-        type="radio"
-        value="other"
-        {...register("gender", { required: true })}
-        className='accent-yellow-500 w-6 h-6'
-      />
-      Other
-    </label>
-  </div>
-</div>
-
-
-  {/* Phone Number */}
-  <div className="col-span-1">
-    <label htmlFor='PhoneNumber' className='block text-sm font-medium text-richblack-200 mb-1'>Phone No.</label>
-    <div className='flex gap-2 items-center'>
-      <div className='bg-richblack-700 w-[30%] rounded-md'>
-        <select {...register("countrycode", { required: "Enter the country code" })} className='w-full h-full p-3 bg-richblack-700 text-white rounded-md'>
-          {countrycode.map((item, index) => (
-            <option key={index} value={item.code}>{item.code} ({item.country})</option>
-          ))}
-        </select>
-      </div>
-
-      <input
-        id='phoneNumber'
-        placeholder='Enter your phone number'
-        {...register("contactNumber", { required: "Enter your contact number" })}
-        className="w-full p-3 border border-richblack-600 rounded-md bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-      />
-    </div>
-    {errors.countrycode && <p className="text-red-500 text-sm">{errors.countrycode.message}</p>}
-    {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber.message}</p>}
-  </div>
-
-  {/* About */}
-  <div className=" ">
-    <label className='block text-sm font-medium text-richblack-200 mb-1'>About</label>
-    <input
-      {...register("about")}
-      placeholder='Enter Bio Details'
-      className='w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white placeholder-richblack-400 focus:outline-none focus:ring-2 focus:ring-yellow-500'
-    />
-  </div>
-
-  {/* Save button at bottom right */}
-  <div className="col-span-2 flex justify-end">
-    <button
-      type="submit"
-      className='py-3 px-6 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold rounded-md transition duration-200 whitespace-nowrap'
+  <div className="flex gap-6">
+    
+    <form
+      onSubmit={handleSubmit(updateHandler)}
+      className="grid md:grid-rows-3 md:grid-cols-2 grid-cols-1 gap-6 max-w-4xl w-full"
     >
-      Save
-    </button>
-  </div>
-</form>
-
-
-       
+      {/* Display Name */}
+      <div className="md:col-span-1">
+        <label htmlFor='name' className='block text-sm font-medium text-richblack-200 mb-1'>Display Name</label>
+        <input
+          id='name'
+          {...register("DisplayName")}
+          className='w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white placeholder-richblack-400 focus:outline-none focus:ring-2 focus:ring-yellow-500'
+        />
+        {errors.DisplayName && <span className='text-red-500 text-sm'>{errors.DisplayName.message}</span>}
       </div>
-    </div>
+
+      {/* Profession */}
+      <div className="md:col-span-1">
+        <label
+          htmlFor='profession'
+          className='block text-sm font-medium text-richblack-200 mb-2'
+        >
+          Profession
+        </label>
+        <select
+          id="profession"
+          {...register("profession")}
+          className="w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        >
+          <option value={user?.accountType}>{user?.accountType}</option>
+        </select>
+
+        {errors.profession && (
+          <span className='text-red-500 text-sm mt-1 block'>
+            {errors.profession.message}
+          </span>
+        )}
+      </div>
+
+      {/* Date of Birth */}
+      <div className="md:col-span-1">
+        <label htmlFor='birthdate' className='block text-sm font-medium text-richblack-200 mb-1'>Date Of Birth</label>
+        <input
+          type='date'
+          id='birthdate'
+          {...register("dateOfBirth")}
+          className='w-full p-3 rounded-md bg-richblack-700 cursor-pointer border border-richblack-600 text-white'
+        />
+        {errors.dateOfBirth && <span className='text-red-500 text-sm'>{errors.dateOfBirth.message}</span>}
+      </div>
+
+      {/* Gender */}
+      <div className="md:col-span-1 bg-richblack-700 p-4 rounded-md">
+        <p className='text-sm font-medium text-richblack-200 mb-3 flex items-center gap-2'>
+          Gender <FaStarOfLife color='red' size={10} />
+        </p>
+        <div className='flex flex-wrap gap-4 md:gap-8'>
+          <label className="flex items-center gap-3 text-richblack-100 cursor-pointer">
+            <input
+              type="radio"
+              value="Male"
+              {...register("gender", { required: true })}
+              className='accent-yellow-500 w-6 h-6'
+            />
+            Male
+          </label>
+
+          <label className="flex items-center gap-3 text-richblack-100 cursor-pointer">
+            <input
+              type="radio"
+              value="Female"
+              {...register("gender", { required: true })}
+              className='accent-yellow-500 w-6 h-6'
+            />
+            Female
+          </label>
+
+          <label className="flex items-center gap-3 text-richblack-100 cursor-pointer">
+            <input
+              type="radio"
+              value="other"
+              {...register("gender", { required: true })}
+              className='accent-yellow-500 w-6 h-6'
+            />
+            Other
+          </label>
+        </div>
+      </div>
+
+      {/* Phone Number */}
+      <div className="md:col-span-1">
+        <label htmlFor='PhoneNumber' className='block text-sm font-medium text-richblack-200 mb-1'>Phone No.</label>
+        <div className='flex flex-col sm:flex-row gap-2 items-center'>
+          <div className='bg-richblack-700 w-full sm:w-[30%] rounded-md'>
+            <select {...register("countrycode", { required: "Enter the country code" })} className='w-full h-full p-3 bg-richblack-700 text-white rounded-md'>
+              {countrycode.map((item, index) => (
+                <option key={index} value={item.code}>{item.code} ({item.country})</option>
+              ))}
+            </select>
+          </div>
+
+          <input
+            id='phoneNumber'
+            placeholder='Enter your phone number'
+            {...register("contactNumber", { required: "Enter your contact number" })}
+            className="w-full p-3 border border-richblack-600 rounded-md bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+          />
+        </div>
+        {errors.countrycode && <p className="text-red-500 text-sm">{errors.countrycode.message}</p>}
+        {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber.message}</p>}
+      </div>
+
+      {/* About */}
+      <div className="md:col-span-1">
+        <label className='block text-sm font-medium text-richblack-200 mb-1'>About</label>
+        <input
+          {...register("about")}
+          placeholder='Enter Bio Details'
+          className='w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white placeholder-richblack-400 focus:outline-none focus:ring-2 focus:ring-yellow-500'
+        />
+      </div>
+
+      {/* Save button at bottom right */}
+      <div className="md:col-span-2 flex justify-end">
+        <button
+          type="submit"
+          className='py-3 px-6 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold rounded-md transition duration-200 whitespace-nowrap'
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
   )
 }
 

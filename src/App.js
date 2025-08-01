@@ -195,6 +195,9 @@ useEffect(() => {
              }
        
              </Route>
+
+             <Route path="*" element={<Error />} />
+
       </Routes>
 
 

@@ -119,69 +119,70 @@ localStorage.setItem("user", JSON.stringify(updatedUser));
 
 
   return (
-    <div className="text-white mx-auto flex flex-col items-center justify-center w-[100%] max-w-4xl">
-      <h1 className="text-2xl text-richblack-50 mb-4">Edit Profile</h1>
+    <div className="text-white mx-auto flex flex-col items-center justify-center w-full max-w-4xl px-4 sm:px-6">
+  <h1 className="text-xl sm:text-2xl text-richblack-50 mb-3 sm:mb-4">Edit Profile</h1>
 
-      <div className="flex w-[100%] max-w-4xl items-center bg-richblack-800 rounded-xl p-4 justify-center gap-10">
-        {/* Profile Image Preview */}
-        <div className="size-20 rounded-full overflow-hidden">
-          <img
-            src={preview || user?.image}
-            alt="Profile"
-            className="w-full h-full object-cover rounded-full"
-          />
-        </div>
-
-        {/* Upload Form */}
-        <div className="flex flex-col items-center">
-          <p className="mb-2">Change Profile Picture</p>
-
-          <form onSubmit={handleSubmit(formSubmit)} className="flex gap-2 items-center">
-            <input
-              type="file"
-              id="displayPicture"
-              accept="image/*"
-              className="hidden"
-              {...register('displayPicture')}
-              ref={fileRef}
-              onChange={onFileChange}
-            />
-
-            <label
-              onClick={!loading ? changeHandler : undefined}
-              className={`px-3 py-1 rounded text-black font-medium 
-    ${loading ? 'bg-yellow-200 cursor-not-allowed' : 'bg-yellow-400 cursor-pointer'}`}
-            >
-              Choose File
-            </label>
-
-            <button
-              type="submit"
-              disabled={loading || !image}
-              className="bg-yellow-500 text-black px-3 py-1 rounded font-medium"
-            >
-              {loading ? 'Uploading...' : 'Upload'}
-            </button>
-
-            <button
-              type="button"
-              disabled={loading}
-              onClick={removeImage}
-              className={`border px-3 py-1 rounded text-white 
-    ${loading ? 'cursor-not-allowed bg-richblack-600' : 'bg-richblack-700 border-richblack-600'}`}
-            >
-              Remove
-            </button>
-          </form>
-
-          {errors.displayPicture && (
-            <span className="text-red-400 mt-1 text-sm">
-              {errors.displayPicture.message}
-            </span>
-          )}
-        </div>
-      </div>
+  <div className="flex flex-col sm:flex-row w-full max-w-4xl items-center bg-richblack-800 rounded-xl p-3 sm:p-4 justify-center gap-6 sm:gap-10">
+    {/* Profile Image Preview */}
+    <div className="size-16 sm:size-20 rounded-full overflow-hidden border-2 border-richblack-600">
+      <img
+        src={preview || user?.image}
+        alt="Profile"
+        className="w-full h-full object-cover rounded-full"
+      />
     </div>
+
+    {/* Upload Form */}
+    <div className="flex flex-col items-center w-full sm:w-auto">
+      <p className="mb-1 sm:mb-2 text-sm sm:text-base">Change Profile Picture</p>
+
+      <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col sm:flex-row gap-2 items-center w-full sm:w-auto">
+        <input
+          type="file"
+          id="displayPicture"
+          accept="image/*"
+          className="hidden"
+          {...register('displayPicture')}
+          ref={fileRef}
+          onChange={onFileChange}
+        />
+
+        <label
+          onClick={!loading ? changeHandler : undefined}
+          className={`px-2 sm:px-3 py-1 rounded text-black font-medium text-xs sm:text-sm w-full sm:w-auto text-center
+            ${loading ? 'bg-yellow-200 cursor-not-allowed' : 'bg-yellow-400 cursor-pointer hover:bg-yellow-500'}`}
+        >
+          Choose File
+        </label>
+
+        <button
+          type="submit"
+          disabled={loading || !image}
+          className={`w-full sm:w-auto px-2 sm:px-3 py-1 rounded font-medium text-xs sm:text-sm
+            ${loading || !image ? 'bg-yellow-200 cursor-not-allowed' : 'bg-yellow-500 hover:bg-yellow-600'}`}
+        >
+          {loading ? 'Uploading...' : 'Upload'}
+        </button>
+
+        <button
+          type="button"
+          disabled={loading}
+          onClick={removeImage}
+          className={`w-full sm:w-auto px-2 sm:px-3 py-1 rounded text-white text-xs sm:text-sm
+            ${loading ? 'cursor-not-allowed bg-richblack-600' : 'bg-richblack-700 border border-richblack-600 hover:bg-richblack-600'}`}
+        >
+          Remove
+        </button>
+      </form>
+
+      {errors.displayPicture && (
+        <span className="text-red-400 mt-1 text-xs sm:text-sm">
+          {errors.displayPicture.message}
+        </span>
+      )}
+    </div>
+  </div>
+</div>
   );
 };
 

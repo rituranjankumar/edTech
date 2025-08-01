@@ -57,72 +57,104 @@ const ContactUsForm = ({ onSubmit }) => {
         }
     }, [isSubmitSuccessful])
     return (
-        <form className='max-w-max w-full  ' onSubmit={handleSubmit(submitHandler)}>
-            <div className='flex w-full gap-10 items-between -'>
-                <div className='flex flex-col w-[50%] gap-2 '>
-                    <label className='text-richblack-200' htmlFor='firstname'>First Name</label>
-                    <input type='text' className="p-3 border border-richblack-200 rounded-l bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none" placeholder='Enter your first name' id='firstname' {...register("firstname", { required: "first name is required " })} />
-                    {errors.firstname && <p>{errors.firstname.message}</p>}
+       <form className='w-full max-w-maxContent mx-auto px-2 sm:px-4' onSubmit={handleSubmit(submitHandler)}>
+  {/* First & Last Name */}
+  <div className='flex flex-col sm:flex-row w-full gap-4 sm:gap-10 items-stretch mt-2'>
+    <div className='flex flex-col w-full sm:w-1/2 gap-2'>
+      <label className='text-richblack-200' htmlFor='firstname'>First Name</label>
+      <input
+        type='text'
+        id='firstname'
+        placeholder='Enter your first name'
+        className="p-3 border border-richblack-200 rounded bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none"
+        {...register("firstname", { required: "first name is required " })}
+      />
+      {errors.firstname && <p className="text-red-500 text-sm">{errors.firstname.message}</p>}
+    </div>
 
-                </div>
-                <div className='flex flex-col gap-2 w-[50%] '>
-                    <label className='text-richblack-200' htmlFor='lastname'>Last Name</label>
-                    <input type='text' className="p-3 border border-richblack-200 rounded-l bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none" placeholder='Enter your last name' id='lastname' {...register("lastname", { required: "last name is required " })} />
-                    {errors.lastname && <p>{errors.lastname.message}</p>}
-                </div>
+    <div className='flex flex-col w-full sm:w-1/2 gap-2'>
+      <label className='text-richblack-200' htmlFor='lastname'>Last Name</label>
+      <input
+        type='text'
+        id='lastname'
+        placeholder='Enter your last name'
+        className="p-3 border border-richblack-200 rounded bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none"
+        {...register("lastname", { required: "last name is required " })}
+      />
+      {errors.lastname && <p className="text-red-500 text-sm">{errors.lastname.message}</p>}
+    </div>
+  </div>
 
+  {/* Email */}
+  <div className='w-full mt-4 flex flex-col gap-2'>
+    <label className='text-richblack-200' htmlFor='email'>Email</label>
+    <input
+      type='email'
+      id='email'
+      placeholder='Enter your email address'
+      className="p-3 border border-richblack-200 rounded bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none"
+      {...register("email", {
+        required: "email address is required",
+        pattern: {
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          message: "Invalid email format"
+        }
+      })}
+    />
+    {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+  </div>
 
-            </div>
+  {/* Phone Number */}
+  <div className='w-full mt-4 flex flex-col gap-2'>
+    <label className='text-richblack-200' htmlFor='PhoneNumber'>Phone No.</label>
+    <div className='flex flex-col sm:flex-row gap-3 items-stretch'>
+      <div className='bg-richblack-700 sm:w-[25%] w-full rounded'>
+        <select
+          {...register("countrycode", { required: "enter the country code" })}
+          className='bg-richblack-700 p-3 w-full border border-richblack-200 rounded text-white'
+        >
+          {countrycode.map((item, index) => (
+            <option key={index} value={item.code}>
+              {item.code} ({item.country})
+            </option>
+          ))}
+        </select>
+      </div>
 
-            <div className='min-w-full   mt-4 flex flex-col gap-2'>
-                <label className='text-richblack-200' htmlFor='email'>Email</label>
-                <input type='email' className="p-3 border border-richblack-200 rounded-l bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none" placeholder='Enter your email address' id='email' {...register("email", {
-                    required: "email address is required "
-                    , pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email format" }
-                })} />
-                {errors.email && <p>{errors.email.message}</p>}
-            </div>
+      <input
+        id='phoneNumber'
+        placeholder='Enter your phone number'
+        className="p-3 w-full border border-richblack-200 rounded bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none"
+        {...register("phoneNumber", { required: "enter your contact number" })}
+      />
+    </div>
+    {errors.countrycode && <p className="text-red-500 text-sm">{errors.countrycode.message}</p>}
+    {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
+  </div>
 
+  {/* Message */}
+  <div className='w-full mt-4 flex flex-col gap-2'>
+    <label className='text-richblack-200' htmlFor='area'>Message</label>
+    <textarea
+      id="area"
+      cols={30}
+      rows="5"
+      placeholder="Enter your message"
+      className="p-3 h-[180px] border border-richblack-200 rounded bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none"
+      {...register("message", { required: "Message is required" })}
+    ></textarea>
+    {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
+  </div>
 
-            <div className='min-w-full   mt-4 flex flex-col gap-2'>
-                <label className='text-richblack-200' htmlFor='PhoneNumber'>Phone No.</label>
-                <div className='flex justify-between items-center '>
-                    <div className='bg-richblack-700 w-[15%] rounded p-1 flex'>
-                        <select {...register("countrycode", { required: "enter the country code" })} className='bg-richblack-700 p-3 w-[100%]   border-gray-300 rounded-sm rounded-l'>
-                            {countrycode.map((item, index) =>
-                            (
-                                <option key={index} value={item.code}>{item.code} ({item.country})</option>
-                            ))}
-                        </select>
-                    </div>
+  {/* Submit Button */}
+  <button
+    type="submit"
+    className="mt-6 w-full p-3 rounded-[8px] bg-yellow-50 text-xl font-medium text-richblack-900"
+  >
+    Send Message
+  </button>
+</form>
 
-                    <input id='phoneNumber' className="p-3 w-full border border-richblack-200 rounded-l bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none" placeholder='Enter your phone number'  {...register("phoneNumber", { required: "enter your contact number " })} />
-
-                    {errors.countrycode && <p className="text-red-500">{errors.countrycode.message}</p>}
-                    {errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber.message}</p>}
-                </div>
-
-                <div className='min-w-full   mt-4 flex flex-col gap-2'>
-                    <label className='text-richblack-200' htmlFor='area'>Message</label>
-                    <textarea
-                        cols={30}
-                        rows="5"
-                        className="p-3 h-[180px] border border-richblack-200 rounded bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-richblack-300 focus:outline-none"
-                        placeholder="Enter your message"
-                        id="area"
-                        {...register("message", { required: "Message is required" })}
-                    ></textarea>
-                    {errors.message && <p>{errors.message.message}</p>}
-                </div>
-
-                <button
-                    type="submit"
-                    className="mt-6 w-full p-3 rounded-[8px] bg-yellow-50  text-xl font-medium text-richblack-900"
-                >
-                    send message
-                </button>
-            </div>
-        </form>
     )
 }
 

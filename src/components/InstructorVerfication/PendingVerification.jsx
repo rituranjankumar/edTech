@@ -27,21 +27,26 @@ useEffect(() => {
 }, [user, navigate]);
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center text-richblack-50 justify-center text-center px-4">
-      <FaUserClock className="text-yellow-500 text-6xl mb-4" />
-      <h1 className="text-3xl text-richblack-50 font-semibold mb-2">Your Instructor Account is Pending Verification</h1>
-      <p className="text-lg text-richblack-50 mb-6 max-w-xl">
-        Hello <span className="font-bold text-richblack-50">{user?.firstName} {user?.lastName}</span>, your account is currently awaiting approval
-        from the admin. Once approved, you'll be able to access your instructor dashboard and start uploading courses.
-      </p>
+   <div className="min-h-[80vh] flex flex-col items-center text-richblack-50 justify-center text-center px-4 sm:px-6 py-8">
+  <FaUserClock className="text-yellow-500 text-5xl sm:text-6xl mb-3 sm:mb-4" />
+  <h1 className="text-2xl sm:text-3xl text-richblack-50 font-semibold mb-2 sm:mb-3">
+    Your Instructor Account is Pending Verification
+  </h1>
+  <p className="text-base sm:text-lg text-richblack-50 mb-4 sm:mb-6 max-w-lg sm:max-w-xl">
+    Hello <span className="font-bold text-richblack-50">{user?.firstName} {user?.lastName}</span>, your account is currently awaiting approval
+    from the admin. Once approved, you'll be able to access your instructor dashboard and start uploading courses.
+  </p>
 
-      <div className="text-richblack-50 text-sm">
-        <p>If you believe this is a mistake, please contact the administrator.</p>
-        <Link to="/" className="mt-4 inline-block bg-yellow-50 text-richblack-800 py-2.5 rounded-md  px-3  hover:bg-yellow-300 transition-colors duration-300 ">
-          Return to Home
-        </Link>
-      </div>
-    </div>
+  <div className="text-richblack-50 text-sm sm:text-base">
+    <p>If you believe this is a mistake, please contact the administrator.</p>
+    <Link 
+      to="/" 
+      className="mt-3 sm:mt-4 inline-block bg-yellow-50 text-richblack-800 py-2 sm:py-2.5 rounded-md px-3 hover:bg-yellow-300 transition-colors duration-300 text-sm sm:text-base"
+    >
+      Return to Home
+    </Link>
+  </div>
+</div>
   );
 };
 
