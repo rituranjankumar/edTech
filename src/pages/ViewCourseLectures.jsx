@@ -22,7 +22,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   useEffect(() => {
     const setCourseSpecificDetails = async () => {
       const courseData = await getFullDetailsOfCourse(courseId, token);
-      console.log(" in the viewcourse ", courseData)
+     // console.log(" in the viewcourse ", courseData)
       dispatch(setCourseSectionData(courseData?.data?.courseContent));
       dispatch(setEntireCourseData(courseData?.data));
       dispatch(setCompletedLectures(courseData.completedVideos));
@@ -38,10 +38,10 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
      <div className="relative">
-      {/* Mobile Toggle Button (visible only on small screens) */}
+      {/* Mobile Toggle Button  */}
       <button
         onClick={toggleSidebar}
-        className={`fixed z-50 sm:hidden top-4 left-4 p-2 rounded-md bg-richblack-700 text-white`}
+        className={`fixed z-50 sm:hidden top-15 left-2 p-2 rounded-md bg-richblack-700 text-white`}
       >
         {isSidebarOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
@@ -51,9 +51,10 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true);
         {/* Sidebar - Hidden on mobile when closed */}
         <div
           className={`
-            ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+            ${isSidebarOpen ? 'translate-x-0 pt-7' : '-translate-x-full'} 
             sm:translate-x-0
             fixed sm:relative
+            
             z-40
             w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[30%]
             h-[calc(100vh-3.5rem)] sm:h-full

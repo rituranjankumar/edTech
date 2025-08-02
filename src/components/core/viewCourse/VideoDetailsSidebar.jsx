@@ -57,10 +57,10 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
   {/* Buttons and Heading */}
   <div className="mx-3 sm:mx-4 flex flex-col items-start justify-between gap-3 sm:gap-4 border-b border-richblack-600 py-4 sm:py-5">
     {/* Navigation Buttons */}
-    <div className="flex w-full items-center justify-between gap-2">
+    <div className="sm:flex  flex-col sm:flex-row  gap-2  sm:w-full sm:items-center sm:justify-between sm:gap-1">
       <button
         onClick={() => navigate("/dashboard/enrolled-courses")}
-        className="flex h-8 sm:h-9 items-center gap-1 sm:gap-2 rounded-lg bg-richblack-600 px-3 sm:px-4 text-xs sm:text-sm font-medium text-richblack-25 hover:bg-richblack-500 transition-colors"
+        className="flex h-8 mb-2 transition-all duration-300  sm:h-9 items-center gap-1 sm:gap-2 rounded-lg bg-richblack-600 px-3 sm:px-4 text-xs sm:text-sm font-medium text-richblack-25 hover:bg-richblack-500  "
       >
         <FaBackward size={14} />
         <span>Back</span>
