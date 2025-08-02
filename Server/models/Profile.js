@@ -16,7 +16,7 @@ const profileSchema=new mongoose.Schema({
     },
     countrycode: {
   type: String,
-  required: true,
+   
   trim: true
 }
 });
