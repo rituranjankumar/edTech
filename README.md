@@ -1,31 +1,131 @@
-# React & Tailwind CSS Starter Pack
 
-This is a starter pack for creating React projects with Tailwind CSS configured. It uses React version **18.2** and Tailwind CSS version **3.2**.
+# 🎓 EdTech - Online Learning Platform
 
-## Usage
+Welcome to **EdTech**, a modern and scalable online learning platform designed to empower educators and learners. With features like course creation, instructor verification, secure authentication, and a dynamic dashboard, EdTech offers a seamless learning experience.
 
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
+## 🚀 Live Demo
 
-1. Clone the repository to your local machine.
-    ```sh
-    git clone https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git
-    ```
+🌐 [Visit the Website](https://ed-tech-frontend-two.vercel.app)
 
-1. Install the required packages.
-    ```sh
-    cd react-tailwind-css-starter-pack
-    npm install
-    ```
+## 📸 Screenshots
 
-1. Start the development server.
-    ```sh
-    npm start
-    ```
-1. Open the project in your browser at [`http://localhost:3000`](http://localhost:3000) to view your project.
-1. Create your React components and add your styles using Tailwind classes. You can also create new CSS files and import them into your components.
+### 🏠 Home Page
+![Home Page](./Screenshot 2025-08-02 103855.png)
 
-The project is set up to use `postcss-cli` to process your CSS files. You can add your own `tailwind.config.js` file to customize your Tailwind setup.
+### 🎓 Enrolled Courses
+![Enrolled Courses](./Screenshot 2025-08-02 103839.png)
 
-## Contributing
+### 👤 Profile Page
+![Profile Page](./Screenshot 2025-08-02 103823.png)
 
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+---
+
+## 🧩 Features
+
+- 🧑‍🏫 Instructor and Student Roles
+- ✅ Admin-based Instructor Verification
+- 📚 Course Creation and Lecture Upload
+- 🔐 Secure Authentication (Login, Signup, JWT)
+- 🛒 Razorpay Payment Integration
+- 🎥 Video Streaming and Lecture Progress Tracking
+- 📈 Dynamic Dashboard with Course Analytics
+- 📝 Course Reviews and Ratings
+
+---
+
+## 🛠️ Tech Stack
+
+### 🔹 Frontend
+- React.js
+- Redux Toolkit
+- React Router DOM
+- Tailwind CSS
+- React Icons
+- Axios
+
+### 🔹 Backend
+- Node.js
+- Express.js
+- MongoDB & Mongoose
+- Cloudinary (for media)
+- Razorpay (for payments)
+- JWT for Authentication
+- Bcrypt for password hashing
+
+---
+
+## 📁 Folder Structure (Monorepo Style)
+
+```
+edTech/
+├── client/             # React frontend
+│   └── src/
+├── server/             # Express backend
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   └── ...
+├── .env
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/edTech.git
+cd edTech
+
+# Install dependencies
+cd client && npm install
+cd ../server && npm install
+
+# Setup .env for backend
+PORT=7000
+MONGODB_URL=your_mongodb_uri
+JWT_SECRET=your_secret_key
+RAZORPAY_KEY=your_key
+RAZORPAY_SECRET=your_secret
+CLOUDINARY_CLOUD_NAME=your_cloud
+CLOUDINARY_API_KEY=your_key
+CLOUDINARY_API_SECRET=your_secret
+
+# Run both frontend and backend
+npm run dev
+```
+
+---
+
+## ✨ Future Improvements
+
+- Add quizzes and assignments
+- Real-time chat
+- Certificate generation
+- Mobile app version
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a branch: `git checkout -b feature-name`
+3. Commit: `git commit -m 'Add feature'`
+4. Push: `git push origin feature-name`
+5. Open a pull request
+
+---
+
+## 🧑‍💻 Author
+
+**Rituranjan Kumar**  
+
+📧 rituranjan.k@example.com
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
