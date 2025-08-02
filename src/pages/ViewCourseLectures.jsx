@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useParams } from 'react-router-dom';
 import { getFullDetailsOfCourse } from '../services/operations/courseDetailsAPI';
@@ -6,6 +6,8 @@ import { setCompletedLectures, setCourseSectionData, setEntireCourseData, setTot
 import VideoDetailsSidebar from "../components/core/viewCourse/VideoDetailsSidebar"
 import VideoDetails from '../components/core/viewCourse/VideoDetails';
 import { FiMenu, FiX } from 'react-icons/fi';
+ 
+import useOnClickOutside from '../hooks/useOnClickOutside';
 import CourseReviewModal from "../components/core/viewCourse/CourseReviewModal"
 const ViewCourse = () => {
 
@@ -15,6 +17,8 @@ const ViewCourse = () => {
   const dispatch = useDispatch();
 const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
+const refToggle=useRef(null);
+useOnClickOutside(refToggle, () => setIsSidebarOpen(false))
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -35,7 +39,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     setCourseSpecificDetails();
   }, []);
 
-
+  
   return (
      <div className="relative">
       {/* Mobile Toggle Button  */}
@@ -50,12 +54,13 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
         {/* Sidebar - Hidden on mobile when closed */}
         <div
+        ref={refToggle}
           className={`
             ${isSidebarOpen ? 'translate-x-0 pt-7' : '-translate-x-full'} 
             sm:translate-x-0
             fixed sm:relative
             
-            z-40
+            z-30  
             w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[30%]
             h-[calc(100vh-3.5rem)] sm:h-full
             transition-all duration-300
@@ -74,19 +79,15 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true);
             transition-all duration-300
           `}
         >
-          <div className="mx-auto w-full py-4 px-4 sm:px-6">
+          <div className="mx-auto   w-full py-4 px-4 sm:px-6">
             <Outlet />
+                
           </div>
         </div>
       </div>
 
       {/* Overlay for mobile when sidebar is open */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden"
-          onClick={toggleSidebar}
-        />
-      )}
+   
 
       {/* Modal */}
       {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}

@@ -193,7 +193,7 @@ const VideoDetails = () => {
         }}
         src={videoData?.videoUrl}
       >
-        <ControlBar className="text-xs sm:text-xs md:text-base">
+        <ControlBar className="text-xs sm:text-xs md:text-xs">
           <LoadingSpinner />
           <ReplayControl seconds={10} order={2.1} />
           <ForwardControl seconds={10} order={3.1} />
@@ -202,7 +202,7 @@ const VideoDetails = () => {
       </Player>
 
       {videoEnded && (
-        <div className='bg-opacity-50 p-4 sm:p-5 md:p-6 bg-richblack-700 backdrop-blur-sm z-50 absolute w-full h-full gap-3 sm:gap-4 md:gap-5 text-white flex inset-0 flex-col items-center justify-center'>
+        <div className='bg-opacity-50 p-4 sm:p-5 md:p-6 bg-richblack-700 backdrop-blur-sm z-20 absolute w-full h-full gap-3 sm:gap-4 md:gap-5 text-white flex inset-0 flex-col items-center justify-center'>
           {!completedLectures.includes(subSectionId) && (
             <IconBtn
               disabled={loading}
