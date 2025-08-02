@@ -10,13 +10,13 @@ Welcome to **EdTech**, a modern and scalable online learning platform designed t
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](./Screenshot 2025-08-02 103855.png)
+![Home Page](./src/assets/Images/Screenshot%202025-08-02%20103855.png)
 
 ### 🎓 Enrolled Courses
-![Enrolled Courses](./Screenshot 2025-08-02 103839.png)
+![Enrolled Courses](./src/assets/Images/Screenshot%202025-08-02%20103839.png)
 
 ### 👤 Profile Page
-![Profile Page](./Screenshot 2025-08-02 103823.png)
+![Profile Page](./src/assets/Images/Screenshot%202025-08-02%20103823.png)
 
 ---
 
@@ -122,7 +122,7 @@ npm run dev
 
 **Rituranjan Kumar**  
 
-📧 rituranjan.k@example.com
+📧 kunal50639@gmail.com
 
 ---
 
