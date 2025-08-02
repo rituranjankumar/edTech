@@ -81,7 +81,7 @@ const Navbar = () => {
 
                                                 <div className='invisible absolute left-[50%]
                       translate-x-[-50%] translate-y-[10%]
-                      top-[50%] z-10
+                      top-[50%] z-20
                       flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900
                       opacity-0 transition-all duration-200 group-hover:visible
                       group-hover:opacity-100 lg:w-[300px] w-[220px] sm:w-[260px]'>
@@ -136,9 +136,9 @@ const Navbar = () => {
                                         <p className='text-white text-[0.75rem] sm:text-sm'>{link.title}</p>
                                         <IoIosArrowDropdownCircle />
 
-                                        <div className='invisible absolute left-[50%]
+                                        <div className='invisible  z-50 absolute left-[50%]
                       translate-x-[-50%] translate-y-[10%]
-                      top-[50%] z-10 
+                      top-[50%]  
                       flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900
                       opacity-0 transition-all duration-200 group-hover:visible
                       group-hover:opacity-100   w-fit sm:w-[260px]'>
