@@ -45,7 +45,7 @@ useOnClickOutside(refToggle, () => setIsSidebarOpen(false))
       {/* Mobile Toggle Button  */}
       <button
         onClick={toggleSidebar}
-        className={`fixed z-50 sm:hidden top-15 left-2 p-2 rounded-md bg-richblack-700 text-white`}
+        className={`fixed z-40 sm:hidden top-15 left-2 p-2 rounded-md bg-richblack-700 text-white`}
       >
         {isSidebarOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
@@ -60,7 +60,7 @@ useOnClickOutside(refToggle, () => setIsSidebarOpen(false))
             sm:translate-x-0
             fixed sm:relative
             
-            z-30  
+            z-50  
             w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[30%]
             h-[calc(100vh-3.5rem)] sm:h-full
             transition-all duration-300
