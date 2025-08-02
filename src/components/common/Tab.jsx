@@ -4,7 +4,7 @@ export default function Tab({ tabData, field, setField }) {
   style={{
     boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
   }}
-  className="flex flex-wrap sm:flex-nowrap bg-richblack-800 p-1 gap-1 sm:gap-x-1 my-6 rounded-full max-w-full sm:max-w-max"
+  className="flex w-fit flex-wrap sm:flex-nowrap bg-richblack-800 p-1 gap-1 sm:gap-x-1 my-6 rounded-full max-w-full sm:max-w-max"
 >
   {tabData.map((tab) => (
     <button

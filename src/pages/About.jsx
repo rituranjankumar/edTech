@@ -13,7 +13,7 @@ import ReviewSlider from '../components/common/ReviewSlider'
 
 const About = () => {
     return (
-      <div className='flex flex-col lg:flex-row justify-center lg:justify-evenly items-start gap-10 p-6 sm:p-10 lg:p-14 text-white w-full'>
+      <div className='flex flex-col lg:flex-col justify-center lg:justify-evenly items-start gap-10 p-6 sm:p-10 lg:p-14 text-white w-full'>
   {/* Section 1 */}
   <section className='flex relative flex-col justify-center items-center w-full'>
     <div className='w-full'>
@@ -91,7 +91,7 @@ const About = () => {
   <StatsComponent />
 
   {/* Section 5 */}
-  <section className='mx-auto mt-[50px] md:mt-[80px] lg:mt-[100px] flex flex-col items-center justify-between gap-5 mb-[70px] md:mb-[100px] lg:mb-[140px] w-full px-4 sm:px-6 lg:px-0'>
+  <section className='mx-auto mt-[50px] md:mt-[80px] lg:mt-[100px] xs:flex xs:flex-col xs:items-center xs:justify-center xs:gap-5 mb-[70px] md:mb-[100px] lg:mb-[140px] w-full px-4 sm:px-6 lg:px-0'>
     <LearningGrid />
     <ContactFormSection />
   </section>

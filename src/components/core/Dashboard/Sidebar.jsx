@@ -25,7 +25,7 @@ console.log("User Account Type:", user?.accountType);
     )
 }
   return (
-   <div className="flex ">
+   <div className="flex min-h-full">
   <div className="flex relative transition-all duration-300 min-w-[140px] sm:min-w-[180px] md:min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 h-full bg-richblack-800 py-10">
     <div className="flex flex-col">
       {sidebarLinks.map((link) => {

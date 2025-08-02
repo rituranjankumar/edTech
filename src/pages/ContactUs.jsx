@@ -66,10 +66,12 @@ const ContactUs = () => {
   </div>
 
   {/* Reviews Section */}
-  <div className='flex flex-col items-center text-white justify-center p-4 sm:p-5 w-full'>
-    <h1 className='text-xl sm:text-2xl lg:text-3xl'>Reviews from courses</h1>
-    <ReviewSlider/>
-  </div>
+ <section className='w-full px-4 sm:px-6 lg:px-0'>
+    <div className='text-center text-richblack-50 text-xl md:text-2xl font-semibold mb-6'>
+      Reviews from other learners
+    </div>
+    <ReviewSlider /> 
+  </section>
 
   {/* Footer */}
   <div className='w-full'>
