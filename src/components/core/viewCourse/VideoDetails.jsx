@@ -36,11 +36,11 @@ const VideoDetails = () => {
       else {
         //let's assume k all 3 fields are present
 
-        console.log("courseSection data ", courseSectionData);
+     //   console.log("courseSection data ", courseSectionData);
         const filteredData = courseSectionData?.filter(
           (course) => course._id === sectionId
         )
-        console.log("filtered data ", filteredData);
+      //  console.log("filtered data ", filteredData);
         if (!filteredData.length || !filteredData[0]?.subSection?.length) {
           console.warn("No matching section or subSection found");
           setVideoData(null);

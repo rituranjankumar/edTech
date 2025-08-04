@@ -45,8 +45,8 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
 
             setVideoBarActive(prev => activeSubSectionId !== prev ? activeSubSectionId : prev);
 
-            console.log("curr section ", activeStatus);
-            console.log("curr vid", videoBarActive)
+            // console.log("curr section ", activeStatus);
+            // console.log("curr vid", videoBarActive)
         }
         setActiveFlags();
     }, [courseSectionData, courseEntireData, location.pathname,])
