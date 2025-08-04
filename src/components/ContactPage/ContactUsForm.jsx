@@ -12,7 +12,7 @@ const ContactUsForm = ({ onSubmit }) => {
         return state.auth.token
     })
 
-    console.log("contact token -> ", token)
+  //  console.log("contact token -> ", token)
 
     const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm();
     const [loading, setLoading] = useState(false);
@@ -30,14 +30,14 @@ const ContactUsForm = ({ onSubmit }) => {
                 Authorization: `Bearer ${token}`
             };
             const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data, headers);
-            console.log("logging response in contsct us -> ", response)
+          //  console.log("logging response in contsct us -> ", response)
 
             setLoading(false)
             toast.success("message send")
         }
         catch (error) {
             toast.error("message not send")
-            console.log("error in contact us form ", error)
+           // console.log("error in contact us form ", error)
         }
 
 

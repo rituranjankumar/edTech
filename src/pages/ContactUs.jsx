@@ -11,7 +11,7 @@ const ContactUs = () => {
  const contactUsHandler=(data)=>
   {
        
-      console.log("contact us form submitted ",data)
+    //  console.log("contact us form submitted ",data)
   }
   return (
     <div className='flex flex-col justify-center items-start gap-10 md:gap-20 px-4 sm:px-6 lg:px-0'>

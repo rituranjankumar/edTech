@@ -26,7 +26,7 @@ const CreateCategory = () => {
       if (res) {
         // refresh list
        await fetchCategories()
-         console.log("new category  ",res)
+       //  console.log("new category  ",res)
         reset(); // reset form
       }
     } catch (error) {

@@ -19,12 +19,12 @@ const InstructorCourse = () => {
         authorization: `Bearer ${token}`
       }
       const response = await fetchInstructorCourses(token);
-       console.log(response);
+      //  console.log(response);
       setCourses(response);
 
     } catch (error) {
       toast.error(error.response);
-      console.log("error in instructor course getter ->", error.message)
+     // console.log("error in instructor course getter ->", error.message)
     }
   }
   useEffect(() => {
@@ -33,7 +33,7 @@ const InstructorCourse = () => {
 
   const deleteCourseHandler=async (courseId)=>
   {
-     console.log("delete course ",courseId);
+    // console.log("delete course ",courseId);
       await deleteCourse({courseId:courseId},token)
 
       getCourses();

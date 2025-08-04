@@ -188,7 +188,7 @@ const VideoDetails = () => {
         playsInline
         autoPlay={true}
         onEnded={() => {
-          console.log("video ended")
+        //  console.log("video ended")
           setVideoEnded(true)
         }}
         src={videoData?.videoUrl}

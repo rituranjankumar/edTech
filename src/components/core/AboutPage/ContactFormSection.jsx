@@ -5,7 +5,7 @@ const ContactFormSection = () => {
 
   const submitHandler=(data)=>
   {
-    console.log( "cutomer feedback in about page is ->",data)
+   // console.log( "cutomer feedback in about page is ->",data)
   }
 
 

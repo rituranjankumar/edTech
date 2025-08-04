@@ -49,7 +49,7 @@ export async function buyCourse(courses, token, navigate, dispatch, userDetails)
         })
         // const id= process.env.REACT_APP_RAZORPAY_KEY
         // console.log("id is " ,id);
-        console.log("orderResponse from the order initiation -> ", orderResponse );
+      //  console.log("orderResponse from the order initiation -> ", orderResponse );
         
         if (!orderResponse?.data?.success) {
             toast.error(orderResponse.data.message);
@@ -84,7 +84,7 @@ export async function buyCourse(courses, token, navigate, dispatch, userDetails)
             }
         }
 
-        console.log("Razorpay Options:", option);
+       // console.log("Razorpay Options:", option);
         const paymentObject = new window.Razorpay(option);
         paymentObject.open();
 
@@ -106,7 +106,7 @@ export async function buyCourse(courses, token, navigate, dispatch, userDetails)
         toast.error("failed to buy the course");
          
 
-        console.log("error in buying the course")
+      //  console.log("error in buying the course")
     }
 
     toast.dismiss(toastId);
@@ -128,7 +128,7 @@ async function sendVerificationMail(paymentId, orderId, amount, token) {
             }
 
     } catch (error) {
-            console.log("error in sending the payment email ",error.message);
+          //  console.log("error in sending the payment email ",error.message);
             toast.error("oops mail for payment not send ");
     }
 
@@ -154,7 +154,7 @@ async function verifySignature(razorpay_order_id, razorpay_payment_id,  razorpay
             dispatch(resetCart());
         }   
         catch(error) {
-            console.log("PAYMENT VERIFY ERROR....", error);
+           // console.log("PAYMENT VERIFY ERROR....", error);
             toast.error("Could not verify Payment");
         }
         toast.dismiss(toastId);

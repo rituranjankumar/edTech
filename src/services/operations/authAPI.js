@@ -25,7 +25,7 @@ export function getUserDetails(token, navigate) {
       const response = await apiConnector("GET", GET_USER_DETAILS_API, null, {
         Authorization: `Bearer ${token}`,
       })
-      console.log("GET_USER_DETAILS API RESPONSE............", response)
+    //  console.log("GET_USER_DETAILS API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -36,7 +36,7 @@ export function getUserDetails(token, navigate) {
       dispatch(setUser({ ... response?.data?.userDetails, image: userImage }))
     } catch (error) {
       dispatch(logout(navigate))
-      console.log("GET_USER_DETAILS API ERROR............", error)
+    //  console.log("GET_USER_DETAILS API ERROR............", error)
       toast.error("Could Not Get User Details")
     }
     toast.dismiss(toastId)
@@ -51,14 +51,14 @@ export async function getUserEnrolledCourses(token) {
     const headers={
       authorization:`Bearer ${token}`
     }
-    console.log("BEFORE Calling BACKEND API FOR ENROLLED COURSES");
+   // console.log("BEFORE Calling BACKEND API FOR ENROLLED COURSES");
     const response = await apiConnector(
       "GET",
       GET_USER_ENROLLED_COURSES_API,
       token,
        headers
     )
-    console.log("AFTER Calling BACKEND API FOR ENROLLED COURSES");
+   // console.log("AFTER Calling BACKEND API FOR ENROLLED COURSES");
     // console.log(
     //   "GET_USER_ENROLLED_COURSES_API API RESPONSE............",
     //   response
@@ -69,7 +69,7 @@ export async function getUserEnrolledCourses(token) {
     }
     result = response.data.data
   } catch (error) {
-    console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error)
+    //console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error)
     toast.error("Could Not Get Enrolled Courses")
   }
   toast.dismiss(toastId)
@@ -86,9 +86,9 @@ export function sendOtp(email, navigate) {
         email,
         checkUserPresent: true,
       })
-      console.log("SENDOTP API RESPONSE............", response)
+     // console.log("SENDOTP API RESPONSE............", response)
 
-      console.log(response.data.success)
+     // console.log(response.data.success)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -97,7 +97,7 @@ export function sendOtp(email, navigate) {
       toast.success("OTP Sent Successfully")
       navigate("/verify-email")
     } catch (error) {
-      console.log("SENDOTP API ERROR............", error)
+   //   console.log("SENDOTP API ERROR............", error)
       toast.error("Could Not Send OTP")
     }
     dispatch(setLoading(false))
@@ -129,7 +129,7 @@ export function signUp(
         otp,
       })
 
-      console.log("SIGNUP API RESPONSE............", response)
+     // console.log("SIGNUP API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -137,7 +137,7 @@ export function signUp(
       toast.success("Signup Successful")
       navigate("/login")
     } catch (error) {
-      console.log("SIGNUP API ERROR............", error)
+   //   console.log("SIGNUP API ERROR............", error)
       toast.error("Signup Failed")
       navigate("/signup")
     }
@@ -156,7 +156,7 @@ export function login({email, password}, navigate) {
         password,
       })
 
-      console.log("LOGIN API RESPONSE............", response)
+    //  console.log("LOGIN API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -173,7 +173,7 @@ export function login({email, password}, navigate) {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       navigate("/dashboard/my-profile")
     } catch (error) {
-      console.log("LOGIN API ERROR............", error)
+    //  console.log("LOGIN API ERROR............", error)
       toast.error("Login Failed",
         {
           duration:10000
@@ -194,7 +194,7 @@ export function getPasswordResetToken(email, setEmailSent) {
         email,
       })
 
-      console.log("RESETPASSTOKEN RESPONSE............", response)
+   //   console.log("RESETPASSTOKEN RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -203,7 +203,7 @@ export function getPasswordResetToken(email, setEmailSent) {
       toast.success("Reset Email Sent")
       setEmailSent(true)
     } catch (error) {
-      console.log("RESETPASSTOKEN ERROR............", error)
+    //  console.log("RESETPASSTOKEN ERROR............", error)
       toast.error("Failed To Send Reset Email")
     }
     toast.dismiss(toastId)
@@ -222,7 +222,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
         token,
       })
 
-      console.log("RESETPASSWORD RESPONSE............", response)
+     // console.log("RESETPASSWORD RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -231,7 +231,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
       toast.success("Password Reset Successfully")
       navigate("/login")
     } catch (error) {
-      console.log("RESETPASSWORD ERROR............", error)
+    //  console.log("RESETPASSWORD ERROR............", error)
       toast.error("Failed To Reset Password")
     }
     toast.dismiss(toastId)
@@ -250,17 +250,17 @@ export async function pendingInstructor(token) {
       })
 
        
-          console.log("PENGINF INSTRUCTOR GET API RESPNSE ",response)
+        //  console.log("PENGINF INSTRUCTOR GET API RESPNSE ",response)
       if (!response.data.success) {
         toast.error("error in getting pending instructor")
-       console.error("Failed:",  response?.data?.data?.message);
+      // console.error("Failed:",  response?.data?.data?.message);
         return [];
       }  
       result=response?.data?.data;
        
      
     } catch (error) {
-      console.error("Error fetching pending instructors:", error);
+    //  console.error("Error fetching pending instructors:", error);
       return [];
     }
     
@@ -282,18 +282,18 @@ export async function pendingInstructor(token) {
       }
     );
 
-    console.log("INSTRUCTOR VERIFICATION API RESPONSE", response);
+    //console.log("INSTRUCTOR VERIFICATION API RESPONSE", response);
 
     if (!response?.data?.success) {
       toast.error("Error verifying instructor");
-      console.error("Verification failed:", response?.data?.message);
+     // console.error("Verification failed:", response?.data?.message);
       return null;
     }
 
     toast.success("Instructor verified successfully");
     return response.data.updatedInstructor  ;
   } catch (error) {
-    console.error("Error verifying instructor:", error);
+   // console.error("Error verifying instructor:", error);
     toast.error("Failed to verify instructor");
     return null;
   } finally {
@@ -347,7 +347,7 @@ export function accountDelete(navigate,token)
     }catch(error)
     {
       toast.error("failed to delete the account")
-      console.log("error in deleting the account ",error.response);
+    //  console.log("error in deleting the account ",error.response);
 
     }
   }

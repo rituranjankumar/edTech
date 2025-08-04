@@ -58,7 +58,7 @@ const ChangePassword = () => {
             {
                 toast.success("password changed sucessfully")
             }
-                console.log("response of password change ",response)
+             //   console.log("response of password change ",response)
             setFormData({
                  oldPassword:"",
     newPassword:"",
@@ -68,7 +68,7 @@ const ChangePassword = () => {
     {
          
         toast.error("password not changed")
-        console.log("error in updating the password ",error.response)
+        //console.log("error in updating the password ",error.response)
 
       
     }

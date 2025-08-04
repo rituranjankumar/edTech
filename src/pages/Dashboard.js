@@ -8,39 +8,38 @@ import useOnClickOutside from '../hooks/useOnClickOutside';
 
 const Dashboard = () => {
 
-    const authLoading=useSelector((state)=> state.auth.loading);
+  const authLoading = useSelector((state) => state.auth.loading);
 
-const profileLoading=useSelector((state)=> state.profile.loading);
-const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-const dashRef=useRef(null);
+  const profileLoading = useSelector((state) => state.profile.loading);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const dashRef = useRef(null);
 
-useOnClickOutside(dashRef,()=>setIsSidebarOpen(false))
+  useOnClickOutside(dashRef, () => setIsSidebarOpen(false))
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-console.log("dashboard rendered");
-if(profileLoading || authLoading)
-{
+  //console.log("dashboard rendered");
+  if (profileLoading || authLoading) {
     return (
       <span class="loadder"></span>
-         
+
     )
-}
+  }
 
   return (
-   <div className='relative flex min-h-[calc(100vh-3.5rem)]'>
+    <div className='relative flex min-h-[calc(100vh-3.5rem)]'>
       {/* Mobile Toggle Button (visible only on small screens) */}
       <button
         onClick={toggleSidebar}
         className={`fixed z-30 sm:hidden top-15 left-2 p-2 rounded-md bg-richblack-700 text-white`}
       >
-        <FiMenu size={24} />  
+        <FiMenu size={24} />
       </button>
 
       {/* Sidebar */}
-      <div 
-      ref={dashRef}
+      <div
+        ref={dashRef}
         className={`flex transition-all duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
                    fixed sm:relative z-40 h-[calc(100vh-3.5rem)] sm:h-auto sm:translate-x-0`}
       >

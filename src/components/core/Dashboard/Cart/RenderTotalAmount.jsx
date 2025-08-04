@@ -13,7 +13,7 @@ const RenderTotalAmount = () => {
 
   const handleBuyCourse = async () => {
     const courses = cart.map((course) => course._id);
-    console.log("Bought these courses ->", courses);
+   // console.log("Bought these courses ->", courses);
     // TODO: API integration with payment page
     buyCourse(courses, token, navigate, dispatch, user)
   };

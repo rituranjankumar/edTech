@@ -17,12 +17,12 @@ const Catalog = () => {
   useEffect(() => {
     const getCategories = async () => {
       const res = await apiConnector("GET", categories.CATEGORIES_API);
-      console.log("all categories response ", res);
+   //   console.log("all categories response ", res);
       const category_id = res?.data?.allCategories?.find(
         (ct) => ct.name.split(" ").join("-") === catalogName
       )?._id;
 
-      console.log("category id is ", category_id);
+    //  console.log("category id is ", category_id);
       if (category_id === "undefined") {
         setCategoryId(null);
       }
@@ -36,7 +36,7 @@ const Catalog = () => {
     const getCategoryDetails = async () => {
       try {
         const res = await getCatalogaPageData(categoryId);
-        console.log("category details response", res);
+    //    console.log("category details response", res);
         setCatalogPageData(res);
       } catch (error) {
         console.log(error);

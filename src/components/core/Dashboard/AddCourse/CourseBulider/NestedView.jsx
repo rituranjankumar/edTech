@@ -21,7 +21,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
     const [confirmationModal, setConfirmationModal] = useState(null)
 
     useEffect(() => {
-        console.log("REndering it again")
+       // console.log("REndering it again")
     })
 
     const handleDeleteSection = async (sectionId) => {
@@ -42,7 +42,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
         }
         setConfirmationModal(null)
     }
-console.log("in the nested view ",course)
+// console.log("in the nested view ",course)
     return (
         <div>
             <div className='rounded-lg text-white bg-richblack-700 p-6 px-8 space-y-6'>

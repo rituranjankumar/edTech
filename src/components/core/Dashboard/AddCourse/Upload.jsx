@@ -73,7 +73,7 @@ const Upload = ({
                         toast.error("time duration not fetched in upload comp")
                     }
 
-                    console.log("Video Duration:", getValues("timeDuration"), "seconds");
+                   // console.log("Video Duration:", getValues("timeDuration"), "seconds");
                 };
 
                 tempVideo.src = reader.result;

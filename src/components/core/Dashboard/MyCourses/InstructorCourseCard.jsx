@@ -32,7 +32,7 @@ const InstructorCourseCard = ({ course, index, deleteCourseHandler }) => {
                 return total + sectionDuration;
                 }, 0);
                  
-                 console.log("time duration of the course is  ", totalDuration)
+             //    console.log("time duration of the course is  ", totalDuration)
   const editHandler=()=>
   {
     dispatch(setEditCourse(true));

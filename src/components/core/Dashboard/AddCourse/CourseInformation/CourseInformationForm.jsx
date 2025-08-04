@@ -29,7 +29,7 @@ const CourseInformationForm = () => {
     const getCategories = async () => {
         setLoading(true);
         const categories = await fetchCourseCategories();
-        console.log("course categories -> ", categories);
+      //  console.log("course categories -> ", categories);
         if (categories.length > 0) {
             setCourseCategories(categories);
         }
@@ -48,7 +48,7 @@ const CourseInformationForm = () => {
                                             ? JSON.parse(course.instructions)
                                             : course.instructions || []);
             setValue("courseImage", course.thumbnail);
-            console.log("course is ", course);
+           // console.log("course is ", course);
         }
 
         getCategories();
@@ -122,8 +122,8 @@ const CourseInformationForm = () => {
                     dispatch(setCourse(result));
                 }
 
-                console.log("PRINTING FORMDATA", formData);
-                console.log("PRINTING result", result);
+              //  console.log("PRINTING FORMDATA", formData);
+               // console.log("PRINTING result", result);
             }
             else {
                 toast.error("NO Changes made so far");
@@ -159,7 +159,7 @@ const CourseInformationForm = () => {
         }
         setLoading(false);
         //  console.log("PRINTING FORMDATA", formData);
-        console.log("PRINTING result", result);
+      //  console.log("PRINTING result", result);
     }
     return (
         <form

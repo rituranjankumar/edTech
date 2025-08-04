@@ -58,7 +58,7 @@ const CourseDetails = () => {
       setCourseData(result.data);
       setTotalDuration(result?.totalDuration)
     } catch (error) {
-      console.log("error in the course details ", error.message);
+     // console.log("error in the course details ", error.message);
     }
   };
 

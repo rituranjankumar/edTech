@@ -34,7 +34,7 @@ const CourseDetailsCard = ({ course, handleBuyCourse }) => {
               
             }
           } catch (err) {
-            console.error("Invalid instructions format", err);
+           // console.error("Invalid instructions format", err);
             parsedInstructions = [];
             }
      //console.log("after",parsedInstructions)

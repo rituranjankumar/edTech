@@ -25,10 +25,10 @@ const ExploreMore = () => {
         setCurrentCard(result[0].courses[0].heading);
     }
 
-    console.log("current tab -> ",currentTab);
+   // console.log("current tab -> ",currentTab);
 
-    console.log("current course -> ",courses);
-    console.log("current card -> ",currentCard);
+   // console.log("current course -> ",courses);
+   // console.log("current card -> ",currentCard);
 
   return (
    <div className=" ">

@@ -27,10 +27,10 @@ const Instructor = () => {
     setLoading(false);
   }
 
-  console.log("course data -> ", course);
-  console.log("dashboard data   -> ", instructorData);
+  //console.log("course data -> ", course);
+  //console.log("dashboard data   -> ", instructorData);
   useEffect(() => {
-    console.log("instructor dashboard rendernjbvlbdvkjv")
+   // console.log("instructor dashboard render ")
     getCourseData();
   }, [])
 

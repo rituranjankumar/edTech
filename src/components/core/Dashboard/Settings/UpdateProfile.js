@@ -52,8 +52,8 @@ const dispatch=useDispatch();
   }
 }, [user, reset]);
   const updateHandler = async (data) => {
-    console.log("update profile data -> ", data);
-console.log("token in update profile ",token)
+  //  console.log("update profile data -> ", data);
+  //console.log("token in update profile ",token)
     try{
      const  headers={
                 authorization: `Bearer ${token}`
@@ -61,7 +61,7 @@ console.log("token in update profile ",token)
               }
           const response=await apiConnector('PUT',settingsEndpoints.UPDATE_PROFILE_API,data,headers  )
          
-          console.log("upated user ",response.data.userProfile);
+      //    console.log("upated user ",response.data.userProfile);
            
           if (response.data.userProfile) {
       dispatch(setUser(response.data.userProfile));

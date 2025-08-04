@@ -65,7 +65,7 @@ const ProfileChange = () => {
         }
       );
      const updatedUser = response.data.data; 
-      console.log('Upload response:', updatedUser);
+    //  console.log('Upload response:', updatedUser);
      dispatch(setUser(updatedUser));
 toast.success("Profile Picture changed")
       localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -75,7 +75,7 @@ toast.success("Profile Picture changed")
       //dispatch(setUser(JSON.stringify(updatedUser)))
     } catch (error) {
       toast.error("failed to upload the image")
-      console.error('Error uploading image:', error);
+    //  console.error('Error uploading image:', error);
     } finally {
       setLoading(false);
     }
@@ -97,7 +97,7 @@ const removeImage = async () => {
     );
 
     const updatedUser = response.data.data; 
-    console.log("updated user after image removal",updatedUser)
+  //  console.log("updated user after image removal",updatedUser)
     updatedUser.image = updatedUser?.image
         ? updatedUser?.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${updatedUser.firstName} ${updatedUser.lastName}`

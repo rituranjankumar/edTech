@@ -101,10 +101,10 @@ const SubSectionModal = ({
     formData.append('description', data.lectureDesc)
     formData.append('lectureVideo', data.lectureVideo)
 
-     console.log("before addding the subsection ",getValues("timeDuration"));
-       for (let [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
-  }
+    //  console.log("before addding the subsection ",getValues("timeDuration"));
+    //    for (let [key, value] of formData.entries()) {
+    // console.log(`${key}:`, value);
+ // }
     setLoading(true)
     const result = await createSubSection(formData, token)
     if (result) {

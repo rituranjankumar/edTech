@@ -18,14 +18,14 @@ const InstructorVerificationByAdmin = () => {
       //  toast.success(" Pending Instructor fetched successfully")
     }
     setInstructors(data);
-    console.log("pending instructor data ",data);
+  //  console.log("pending instructor data ",data);
     setLoading(false);
   };
 
   const handleVerify = async (instructorId) => {
-    console.log("instructor id befire verifucation ",instructorId)
+    //console.log("instructor id befire verifucation ",instructorId)
     const result = await verifyInstructor(token, instructorId);
-    console.log("updated instructor is ",result)
+  //  console.log("updated instructor is ",result)
     if (result) {
       // Remove verified instructor from list
       setInstructors((prev) => prev.filter((user) => user._id !== instructorId));
@@ -34,7 +34,7 @@ const InstructorVerificationByAdmin = () => {
 
   useEffect(() => {
     fetchPendingInstructors();
-    console.log("called times")
+   // console.log("called times")
   }, []);
 
   if (loading) return <div className="text-white text-xl">Loading...</div>;
