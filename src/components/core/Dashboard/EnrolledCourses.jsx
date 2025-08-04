@@ -41,7 +41,7 @@ const EnrolledCourses = () => {
 
 
   
-  console.log("enrolled courses",enrolledCourses)
+ // console.log("enrolled courses",enrolledCourses)
   useEffect(() => {
     getEnrolledCourses();
 

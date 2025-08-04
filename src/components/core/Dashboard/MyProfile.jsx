@@ -8,7 +8,7 @@ const MyProfile = () => {
   const { user } = useSelector((state) => state.profile)
   const navigate = useNavigate();
 
-  console.log("my profile rendered");
+  //console.log("my profile rendered");
 
   return (
    <div className='text-white w-full flex justify-center items-center px-4 py-10'>

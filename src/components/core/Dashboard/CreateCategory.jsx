@@ -22,7 +22,7 @@ const CreateCategory = () => {
   const onSubmit = async (data) => {
     try {
       const res = await  addNewCategory(data,token)
-      console.log(res);
+   //   console.log(res);
       if (res) {
         // refresh list
        await fetchCategories()
