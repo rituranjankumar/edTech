@@ -36,8 +36,8 @@ const dispatch=useDispatch();
       about: user?.additionalDetails?.about
     }
   })
- console.log(user?.additionalDetails?.dateOfBirth);
- console.log(convertToISO(user?.additionalDetails?.dateOfBirth) )
+//  console.log(user?.additionalDetails?.dateOfBirth);
+//  console.log(convertToISO(user?.additionalDetails?.dateOfBirth) )
   useEffect(() => {
   if (user) {
     reset({
