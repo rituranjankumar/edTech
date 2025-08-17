@@ -76,7 +76,7 @@ const CourseInformationForm = () => {
     //handles next button click
     const onSubmit = async (data) => {
 
-        console.log("in course creation page checking for the category ",data);
+       // console.log("in course creation page checking for the category ",data);
         //use formdata to send the data to backend when there is handeling with files
         if (editCourse) {
             if (isFormUpdated()) {

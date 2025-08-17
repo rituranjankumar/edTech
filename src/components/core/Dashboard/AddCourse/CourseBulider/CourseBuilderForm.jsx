@@ -19,9 +19,9 @@ const CourseBuilderForm = () => {
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    console.log("UPDATED")
-  }, [course])
+  // useEffect(() => {
+  //  // console.log("UPDATED")
+  // }, [course])
 
   const onSubmit = async (data) => {
     setLoading(true)
