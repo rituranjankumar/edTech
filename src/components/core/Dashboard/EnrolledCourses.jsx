@@ -54,9 +54,11 @@ const EnrolledCourses = () => {
 
   {
     !enrolledCourses ? (
-      <div className='loader h-10 w-10 border-4 border-t-white border-gray-300 rounded-full animate-spin'></div>
+       <div className="flex justify-center items-center h-60">
+            <div className="loadder"></div>
+        </div>
     ) :
-    !enrolledCourses.length ? (
+    !enrolledCourses?.length ? (
       <p className="text-gray-400">You are not enrolled in any course</p>
     ) : (
       <div className="space-y-4">
@@ -71,9 +73,9 @@ const EnrolledCourses = () => {
           <div 
             key={index}
             onClick={() => {
-              console.log(course?._id)
-              console.log(course.courseContent?.[0]?.subSection?.[0]._id)
-              console.log(course.courseContent[0]?._id)
+              // console.log(course?._id)
+              // console.log(course.courseContent?.[0]?.subSection?.[0]._id)
+              // console.log(course.courseContent[0]?._id)
               navigate(`/view-course/${course?._id}/section/${course.courseContent[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]._id}`)
             }}
             className="cursor-pointer bg-richblack-800 p-4 rounded-lg border border-richblack-700 hover:border-yellow-500 hover:bg-richblack-700 transition-all duration-200"

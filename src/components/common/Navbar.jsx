@@ -161,7 +161,10 @@ const Navbar = () => {
                                                             </p>
                                                         </Link>
                                                     ))
-                                                ) : (<div></div>)
+                                                ) : (<div>
+                                                <span className='loadder navbar-loader'></span>
+                                                
+                                                </div>)
                                             }
                                         </div>
                                     </div>

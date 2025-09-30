@@ -193,12 +193,18 @@ const VideoDetails = () => {
         }}
         src={videoData?.videoUrl}
       >
-        <ControlBar className="text-xs sm:text-xs md:text-xs">
-          <LoadingSpinner />
-          <ReplayControl seconds={10} order={2.1} />
-          <ForwardControl seconds={10} order={3.1} />
-          <PlaybackRateMenuButton rates={[2, 1.5, 1.25, 1, 0.75, 0.5]} />
-        </ControlBar>
+                    <ControlBar className="text-xs sm:text-xs md:text-xs">
+                <LoadingSpinner />
+
+              
+                <div className="hidden md:flex items-center gap-2">
+                  <ReplayControl seconds={10} order={2.1} />
+                  <ForwardControl seconds={10} order={3.1} />
+                </div>
+
+                 
+                <PlaybackRateMenuButton rates={[2, 1.5, 1.25, 1, 0.75, 0.5]} />
+              </ControlBar>
       </Player>
 
       {videoEnded && (

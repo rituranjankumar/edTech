@@ -43,12 +43,31 @@ useOnClickOutside(refToggle, () => setIsSidebarOpen(false))
   return (
      <div className="relative">
       {/* Mobile Toggle Button  */}
-      <button
-        onClick={toggleSidebar}
-        className={`fixed z-40 sm:hidden top-15 left-2 p-2 rounded-md bg-richblack-700 text-white`}
-      >
-        {isSidebarOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-      </button>
+   {/* Open Button - only shows when sidebar is closed */}
+{!isSidebarOpen && (
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      setIsSidebarOpen(true);
+    }}
+    className="fixed z-[999] sm:hidden top-4 left-2 p-2 rounded-md bg-richblack-700 text-white"
+  >
+    <FiMenu size={24} />
+  </button>
+)}
+
+{/* Close Button - only shows when sidebar is open */}
+{isSidebarOpen && (
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      setIsSidebarOpen(false);
+    }}
+    className="fixed z-[999] sm:hidden top-4 left-2 p-2 rounded-md bg-richblack-700 text-white"
+  >
+    <FiX size={24} />
+  </button>
+)}
 
       <div className="text-richblack-100 w-full h-full flex flex-col sm:flex-row min-h-[calc(100vh-3.5rem)] transition-all duration-300">
 
@@ -56,7 +75,7 @@ useOnClickOutside(refToggle, () => setIsSidebarOpen(false))
         <div
         ref={refToggle}
           className={`
-            ${isSidebarOpen ? 'translate-x-0 pt-7' : '-translate-x-full'} 
+            ${isSidebarOpen ? 'translate-x-0 pt-7 min-w-[120px]' : '-translate-x-[300%] '} 
             sm:translate-x-0
             fixed sm:relative
             
@@ -86,7 +105,7 @@ useOnClickOutside(refToggle, () => setIsSidebarOpen(false))
         </div>
       </div>
 
-      {/* Overlay for mobile when sidebar is open */}
+       
    
 
       {/* Modal */}

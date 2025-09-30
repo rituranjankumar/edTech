@@ -58,3 +58,9 @@ html, body {
         transform: rotate(360deg);
     }
     } 
+
+    /* Navbar-specific loader */
+.navbar-loader {
+  border: 5px solid #facc15;          
+  border-bottom-color: transparent;
+}

@@ -53,7 +53,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
 
     return (
         <>
-     <div className="flex h-[calc(100vh-3.5rem)] w-full flex-col   border-r border-r-richblack-700 bg-richblack-800">
+     <div className="flex h-[calc(100vh-3.5rem)]    w-full flex-col   border-r border-r-richblack-700 bg-richblack-800">
   {/* Buttons and Heading */}
   <div className="mx-3 sm:mx-4 flex flex-col items-start justify-between gap-3 sm:gap-4 border-b border-richblack-600 py-4 sm:py-5">
     {/* Navigation Buttons */}
@@ -76,7 +76,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
     {/* Course Title */}
     <div className="flex flex-col mt-2 sm:mt-3">
       <p className="text-base sm:text-lg font-semibold text-richblack-5">
-        {courseEntireData?.courseName}
+        {courseEntireData?.Name }
       </p>
       <p className="text-xs sm:text-sm text-richblack-400 mt-1">
         {completedLectures?.length} / {totalNoOfLectures} lectures completed
@@ -109,8 +109,11 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
         </div>
 
         {/* SubSections - Animated Dropdown */}
-        <div className="transition-all duration-300 ease-in-out overflow-hidden">
-          {activeStatus === course?._id && (
+        <div className={`overflow-hidden transition-[max-height] duration-00 ease-in-out`}
+                    style={{
+                      maxHeight: activeStatus === course?._id ? `${course?.subSection?.length * 48}px` : '0px',
+                    }}>
+           
             <div className="mt-1 space-y-1">
               {course?.subSection?.map((topic, subIndex) => (
                 <div
@@ -138,7 +141,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                 </div>
               ))}
             </div>
-          )}
+           
         </div>
       </div>
     ))}

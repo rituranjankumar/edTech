@@ -22,7 +22,7 @@ const CourseDetails = () => {
 
   const { token } = useSelector((state) => state.auth);
   const { user, loading } = useSelector((state) => state.profile);
-  const { paymentLoading } = useSelector((state) => state.course);
+ // const { paymentLoading } = useSelector((state) => state.course);
 
   const [courseData, setCourseData] = useState(null);
   const [avgReviewCount, setAvgReviewCount] = useState(null);
