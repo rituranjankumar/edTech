@@ -194,7 +194,7 @@ const VideoDetails = () => {
         src={videoData?.videoUrl}
       >
                     <ControlBar className="text-xs sm:text-xs md:text-xs">
-                <LoadingSpinner />
+                {/* <LoadingSpinner /> */}
 
               
                 <div className="hidden md:flex items-center gap-2">
@@ -223,7 +223,7 @@ const VideoDetails = () => {
             disabled={loading}
             onClick={() => {
               if (playerRef?.current) {
-                console.log("video restarted")
+               // console.log("video restarted")
                 playerRef.current?.seek(0);
                 playerRef.current?.play();
                 setVideoEnded(false);
