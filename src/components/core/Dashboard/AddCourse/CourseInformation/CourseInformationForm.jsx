@@ -48,9 +48,8 @@ const CourseInformationForm = () => {
                                             ? JSON.parse(course.instructions)
                                             : course.instructions || []);
             setValue("courseImage", course?.thumbnail);
-            console.log("course is ", course);
+           // console.log("course is ", course);
         }
-
         getCategories();
     }, [])
 
