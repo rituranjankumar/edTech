@@ -129,7 +129,7 @@ exports.signUp = async (req, res) => {
         //  whereas .findOne() directly returns the document (not wrapped in an array).
 
         //validate otp
-        if (recentOtp.length == 0) {
+        if (recentOtp?.length == 0) {
             return res.status(400).json({
                 success: false,
                 message: "Otp not found",
@@ -148,7 +148,8 @@ exports.signUp = async (req, res) => {
             gender: null,
             dateOfBirth: null,
             about: null,
-            contactNumber: null
+            contactNumber: null,
+            countrycode:null
         })
         //db entry
         const user = await User.create({

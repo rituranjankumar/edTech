@@ -2,6 +2,7 @@
 const User = require("../models/User");
 const Course = require("../models/Course");
 const Profile = require("../models/Profile");
+const RatingAndReview = require("../models/RatingAndReview");
 
 function deleteExpiredAccount()
 {
@@ -17,12 +18,47 @@ function deleteExpiredAccount()
                 const enrolledCourses = user.courses || []; // Get the list of courses the user is enrolled in
     
                 // Remove user from all enrolled courses
-                for (const courseId of enrolledCourses) {
-                    await Course.findByIdAndUpdate(courseId, {
-                        $pull: { enrolledStudents: userId }, // Remove user from course's enrolledStudents array
-                    });
-                }
+                // for (const courseId of enrolledCourses) {
+                //     await Course.findByIdAndUpdate(courseId, {
+                //         $pull: { enrolledStudents: userId }, // Remove user from course's enrolledStudents array
+                //     });
+                // }
+
+                // 1️ Remove user from all enrolled courses
+
+                    await Course.updateMany(
+                    { _id: { $in: enrolledCourses } },
+                    { $pull: { enrolledStudents: userId } }
+                    );
+
     
+
+                    // delete the reviews
+                   const deletedReviews= await RatingAndReview.find({
+                        user:userId
+                    })
+                        const reviewIds = deletedReviews.map(review => review._id);
+
+                    // remove the deleteRevies from the course
+                    
+                    // for(const review of deletedReviews)
+                    // {
+                    //     await Course.findByIdAndUpdate(review.course,{
+                    //         $pull:{ratingAndReviews:review._id}
+                    //     })
+                    // }
+
+
+                    await Course.updateMany(
+                        { ratingAndReviews: {$in : reviewIds}},
+                        {
+                            $pull : {ratingAndReviews : {$in :reviewIds}}
+                        }
+                    )
+                    await RatingAndReview.deleteMany({_id:{$in :reviewIds}});
+                    
+                    // also delete the course progress
+
                 // Delete the user's profile and account
                 await Profile.findByIdAndDelete(profileId); // Delete the profile
                 await User.findByIdAndDelete(userId); // Delete the user

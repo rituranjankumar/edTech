@@ -24,10 +24,9 @@ const dispatch=useDispatch();
   return `${yyyy}-${mm}-${dd}`;
 }
 
-
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
-      countrycode:countrycode[74].code,
+      countrycode:user?.additionalDetails?.countrycode || "",
       DisplayName: `${user?.firstName} ${user?.lastName}`,
       profession: `${user?.accountType}`,
       dateOfBirth:user?.additionalDetails?.dateOfBirth? convertToISO(user?.additionalDetails?.dateOfBirth):"",
@@ -36,12 +35,13 @@ const dispatch=useDispatch();
       about: user?.additionalDetails?.about
     }
   })
-//  console.log(user?.additionalDetails?.dateOfBirth);
+  console.log(user,'user');
 //  console.log(convertToISO(user?.additionalDetails?.dateOfBirth) )
   useEffect(() => {
   if (user) {
     reset({
-      countrycode:`${user?.additionalDetails?.countrycode}`?`${user?.additionalDetails?.countrycode}`:"",
+    //  countrycode:`${user?.additionalDetails?.countrycode}`?`${user?.additionalDetails?.countrycode}`:"",
+    countrycode:`${user?.additionalDetails?.countrycode}`||"",
       DisplayName: `${user.firstName} ${user.lastName}`,
       profession: user.accountType,
       dateOfBirth: user?.additionalDetails?.dateOfBirth? convertToISO(user?.additionalDetails?.dateOfBirth):"",
@@ -92,7 +92,7 @@ const dispatch=useDispatch();
         <label htmlFor='name' className='block text-sm font-medium text-richblack-200 mb-1'>Display Name</label>
         <input
           id='name'
-          {...register("DisplayName")}
+          {...register("DisplayName" ,{required: "Display name is required"})}
           className='w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white placeholder-richblack-400 focus:outline-none focus:ring-2 focus:ring-yellow-500'
         />
         {errors.DisplayName && <span className='text-red-500 text-sm'>{errors.DisplayName.message}</span>}
@@ -127,6 +127,7 @@ const dispatch=useDispatch();
         <input
           type='date'
           id='birthdate'
+          max={new Date().toISOString().split("T")[0]}
           {...register("dateOfBirth")}
           className='w-full p-3 rounded-md bg-richblack-700 cursor-pointer border border-richblack-600 text-white'
         />
@@ -143,7 +144,7 @@ const dispatch=useDispatch();
             <input
               type="radio"
               value="Male"
-              {...register("gender", { required: true })}
+              {...register("gender", { required: "Please select your gender" })}
               className='accent-yellow-500 w-6 h-6'
             />
             Male
@@ -153,7 +154,7 @@ const dispatch=useDispatch();
             <input
               type="radio"
               value="Female"
-              {...register("gender", { required: true })}
+              {...register("gender",{ required: "Please select your gender" })}
               className='accent-yellow-500 w-6 h-6'
             />
             Female
@@ -163,7 +164,7 @@ const dispatch=useDispatch();
             <input
               type="radio"
               value="other"
-              {...register("gender", { required: true })}
+              {...register("gender", { required: "Please select your gender" })}
               className='accent-yellow-500 w-6 h-6'
             />
             Other
@@ -176,7 +177,18 @@ const dispatch=useDispatch();
         <label htmlFor='PhoneNumber' className='block text-sm font-medium text-richblack-200 mb-1'>Phone No.</label>
         <div className='flex flex-col sm:flex-row gap-2 items-center'>
           <div className='bg-richblack-700 w-full sm:w-[30%] rounded-md'>
-            <select {...register("countrycode", { required: "Enter the country code" })} className='w-full h-full p-3 bg-richblack-700 text-white rounded-md'>
+            <select {...register("countrycode",  {
+            
+        validate: (value, formValues) => {
+        console.log("form",formValues,typeof(value), value)
+           if (( value !== "null") && formValues?.contactNumber?.length<=0) {
+              return "Enter your phone number2";
+            }
+        
+          
+          // return true;
+        },
+      })} className='w-full h-full p-3 bg-richblack-700 text-white rounded-md'>
               {countrycode.map((item, index) => (
                 <option key={index} value={item.code}>{item.code} ({item.country})</option>
               ))}
@@ -186,12 +198,30 @@ const dispatch=useDispatch();
           <input
             id='phoneNumber'
             placeholder='Enter your phone number'
-            {...register("contactNumber", { required: "Enter your contact number" })}
+            {...register("contactNumber", {
+          validate: (value, formValues) => {
+           
+                console.log("value ",value)
+                console.log("value ",formValues,formValues?.countrycode?.length)
+           if (value && (formValues?.countrycode?.length<=0 ||formValues?.countrycode === "undefined" || formValues?.countrycode === "null")) {
+              return "Enter your country code2";
+            }
+        
+           // return true;
+          },
+        })}
             className="w-full p-3 border border-richblack-600 rounded-md bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
           />
         </div>
-        {errors.countrycode && <p className="text-red-500 text-sm">{errors.countrycode.message}</p>}
-        {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber.message}</p>}
+         {/* ✅ Error Messages */}
+  {errors.countrycode && (
+    <p className="text-red-500 text-sm mt-1">{errors.countrycode.message}</p>
+  )}
+  {errors.contactNumber && (
+    <p className="text-red-500 text-sm mt-1">{errors.contactNumber.message}</p>
+  )}
+        {/* {errors.countrycode && <p className="text-red-500 text-sm">{errors.countrycode.message}</p>}
+        {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber.message}</p>} */}
       </div>
 
       {/* About */}
@@ -202,6 +232,7 @@ const dispatch=useDispatch();
           placeholder='Enter Bio Details'
           className='w-full p-3 rounded-md bg-richblack-700 border border-richblack-600 text-white placeholder-richblack-400 focus:outline-none focus:ring-2 focus:ring-yellow-500'
         />
+        
       </div>
 
       {/* Save button at bottom right */}

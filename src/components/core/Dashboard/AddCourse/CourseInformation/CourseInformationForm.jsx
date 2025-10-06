@@ -44,11 +44,11 @@ const CourseInformationForm = () => {
             setValue("courseTags", course.tag);
             setValue("courseBenefits", course.whatYouWillLearn);
             setValue("courseCategory", course.category._id);
-            setValue("courseRequirements",  typeof course.instructions === "string" 
+            setValue("courseRequirements",  typeof(course.instructions) === "string" 
                                             ? JSON.parse(course.instructions)
                                             : course.instructions || []);
-            setValue("courseImage", course.thumbnail);
-           // console.log("course is ", course);
+            setValue("courseImage", course?.thumbnail);
+            console.log("course is ", course);
         }
 
         getCategories();

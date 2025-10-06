@@ -29,7 +29,7 @@ exports.updateProfile = async (req, res) => {
         // console.log("last name -> ",lastName);
 
 
-        if (!contactNumber || !gender || !id) {
+        if (  !gender || !id) {
             return res.status(400).json({
                 success: false,
                 message: "Some fields are required"
@@ -49,12 +49,16 @@ exports.updateProfile = async (req, res) => {
 
 
         // Validate contact number format (assuming 10-digit format)
-        if (!/^\d{10}$/.test(contactNumber)) {
+        if(contactNumber)
+        {
+              if (!/^\d{10}$/.test(contactNumber)) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid contact number format",
             });
         }
+        }
+      
         //find profile
         let userProfile = await User.findByIdAndUpdate(id,
             {
