@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const RequirementField = ({ name, label, register, errors, setValue, getValues }) => {
+const RequirementField = ({ name, label, register, errors, setValue, getValues, watch }) => {
   const [requirement, setRequirement] = useState('');
-  const [requirementlist, setRequirementList] = useState([]);
+  const watchedRequirements = watch(name) || []; // 👈 watch the field directly
 
   const handleAddRequirement = () => {
-    if (requirement.trim() !== '' && !requirementlist.includes(requirement.trim())) {
-      const updatedList = [...requirementlist, requirement.trim()];
-      setRequirementList(updatedList);
+    if (requirement.trim() !== '' && !watchedRequirements.includes(requirement.trim())) {
+      const updatedList = [...watchedRequirements, requirement.trim()];
       setValue(name, updatedList);
       setRequirement('');
     }
   };
 
- // console.log("requirementList ",requirementlist);
   const handleRemoveRequirement = (index) => {
-    const updatedRequirementList = [...requirementlist];
-    updatedRequirementList.splice(index, 1);
-    setRequirementList(updatedRequirementList);
-    setValue(name, updatedRequirementList);
+    const updatedList = watchedRequirements.filter((_, i) => i !== index);
+    setValue(name, updatedList);
   };
 
   useEffect(() => {
@@ -28,14 +25,6 @@ const RequirementField = ({ name, label, register, errors, setValue, getValues }
     });
   }, [register, name]);
 
-  useEffect(()=>
-  {
-      const req=getValues(name);
-      if(req)
-      {
-        setRequirementList(req);
-      }
-  },[])
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={name} className="text-sm font-medium text-white">
@@ -60,9 +49,9 @@ const RequirementField = ({ name, label, register, errors, setValue, getValues }
         </button>
       </div>
 
-      {requirementlist.length > 0 && (
+      {watchedRequirements.length > 0 && (
         <ul className="flex flex-col gap-1 mt-2">
-          {requirementlist.map((requirement, index) => (
+          {watchedRequirements.map((requirement, index) => (
             <li
               key={index}
               className="flex items-center gap-2 px-3 py-1 text-sm bg-yellow-200 text-black rounded-full w-fit"

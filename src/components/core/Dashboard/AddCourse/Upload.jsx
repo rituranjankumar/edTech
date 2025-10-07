@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone"
 import { get } from "react-hook-form"
 import toast from "react-hot-toast"
 import { FiUploadCloud } from "react-icons/fi"
+import { useSelector } from "react-redux"
 import {
     Player,
     BigPlayButton,
@@ -25,12 +26,17 @@ const Upload = ({
     video = false,
     viewData = null,
     editData = null,
+    watch
 }) => {
     const [duration, setDuration] = useState(null);
 
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const inputRef = useRef(null)
+      const {editCourse } = useSelector((state) => state.course);
+
+      //  watch the field value
+    const watchedFile = watch(name);
 
     const formatDuration = (seconds) => {
         if (!seconds) return "0:00";
@@ -118,13 +124,23 @@ const Upload = ({
         }
     }, [file])
 
-    // Handle prefilled form values (edit/view mode)
-    useEffect(() => {
-        const existingFile = getValues(name)
-        if (existingFile && typeof existingFile === "string") {
-            setPreview(existingFile)
-        }
-    }, [getValues, name])
+   
+//  update local state whenever the watched form value changes
+useEffect(() => {
+    if (!watchedFile) {
+        setFile(null)
+        setPreview(null)
+    } else if (typeof watchedFile === "string") {
+        setFile(null)
+        setPreview(watchedFile)
+    } else if (watchedFile instanceof File) {
+        setFile(watchedFile)
+        const reader = new FileReader()
+        reader.readAsDataURL(watchedFile)
+        reader.onloadend = () => setPreview(reader.result)
+    }
+}, [watchedFile])
+
 
     return (
         <div className="w-full space-y-2">

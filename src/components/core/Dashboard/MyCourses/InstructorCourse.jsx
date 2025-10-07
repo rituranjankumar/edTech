@@ -5,14 +5,22 @@ import toast from 'react-hot-toast';
 import { useNavigate } from "react-router";
 import { IoMdAddCircle } from "react-icons/io";
 import {deleteCourse} from "../../../../services/operations/courseDetailsAPI"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconBtn from '../../../common/IconBtn';
+import { resetCourseState } from '../../../../slices/courseSlice';
  
 const InstructorCourse = () => {
 
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
+  // const initialState = {
+  // step: 1,
+  // course: null,
+  // editCourse: false,
+  // paymentLoading: false,
+const dispatch=useDispatch();
+   
   const getCourses = async () => {
     try {
       const headers = {
@@ -44,7 +52,11 @@ const InstructorCourse = () => {
   <div className='flex flex-col sm:flex-row mb-4 md:mb-6 lg:mb-8 justify-between items-start sm:items-center gap-3 sm:gap-4 md:gap-0'>
     <h1 className='text-richblack-100 font-bold text-base sm:text-lg md:text-xl lg:text-2xl'>My Courses</h1>
     <IconBtn
-      onClick={() => navigate("/dashboard/add-course")}
+      onClick={() =>{
+        dispatch(resetCourseState())
+         navigate("/dashboard/add-course")
+
+      }}
       text="Add Course"
       className='bg-yellow-50 flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base'
     >

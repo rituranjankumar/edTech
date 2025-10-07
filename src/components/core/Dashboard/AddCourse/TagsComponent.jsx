@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { RxCross2 } from "react-icons/rx";
-
-const TagsComponent = ({ label, name, placeholder, register, errors, setValue, getValues }) => {
+import { useSelector } from 'react-redux';
+ 
+const TagsComponent = ({ label, name, placeholder, register, errors, setValue, getValues,watch }) => {
   const [tag, setTag] = useState("");
-  const [taglist, setTagList] = useState([]);
+
+  // Get current list directly from react-hook-form
+  const taglist = watch(name) || [];
 
   const handleAddRequirement = () => {
     if (tag.trim() !== "" && !taglist.includes(tag.trim())) {
       const updatedList = [...taglist, tag.trim()];
-      setTagList(updatedList);
-      setValue(name, updatedList);
+      setValue(name, updatedList); // update form value
       setTag("");
     }
   };
 
   const handleRemoveRequirement = (index) => {
-    const updatedTagList = [...taglist];
-    updatedTagList.splice(index, 1);
-    setTagList(updatedTagList);
-    setValue(name, updatedTagList);
+    const updatedList = [...taglist];
+    updatedList.splice(index, 1);
+    setValue(name, updatedList); // update form value
   };
 
   useEffect(() => {
@@ -28,14 +29,6 @@ const TagsComponent = ({ label, name, placeholder, register, errors, setValue, g
     });
   }, [register, name]);
 
-  useEffect(()=>
-  {
-    const tags=getValues(name);
-    if(tags)
-    {
-      setTagList(tags);
-    }
-  },[]);
   return (
     <div className="flex flex-col gap-2">
       {taglist.length > 0 && (

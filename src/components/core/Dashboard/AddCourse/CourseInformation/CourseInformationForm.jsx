@@ -52,7 +52,7 @@ const CourseInformationForm = () => {
         }
            
         getCategories();
-    }, [course, editCourse])
+    }, [course, editCourse,setValue])
 
     const isFormUpdated = () => {
         const currentValues = getValues();
@@ -278,11 +278,14 @@ const CourseInformationForm = () => {
                 errors={errors}
                 setValue={setValue}
                 getValues={getValues}
+                watch={watch}
+                key={editCourse ? "edit-tags" : "new-tags"}
             />
 
             {/*             image upload component */}
 
             <Upload
+             watch={watch}
                 label="Thumbnail"
                 name="courseImage"
                 video={false}
@@ -290,6 +293,7 @@ const CourseInformationForm = () => {
                 errors={errors}
                 setValue={setValue}
                 getValues={getValues}
+                 key={editCourse ? "edit-thumbnail" : "new-thumbnail"}
             />
 
 
@@ -313,12 +317,14 @@ const CourseInformationForm = () => {
             </div>
 
             <RequirementField
+             watch={watch}
                 name="courseRequirements"
                 label="Requirements/instructions"
                 register={register}
                 errors={errors}
                 setValue={setValue}
                 getValues={getValues}
+                 key={editCourse ? "edit-req" : "new-req"}
             />
 
 
