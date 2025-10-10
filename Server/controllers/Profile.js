@@ -374,7 +374,7 @@ exports.instructorDashboard=async(req,res)=>
                 courseName:course.Name,
                 courseDescription:course.courseDescription,
                 totalAmountGenerated:totalAmountGenerated,
-                totalStudentsEnrolled,totalStudentsEnrolled
+                totalStudentsEnrolled:totalStudentsEnrolled
             }
 
             return courseDataWithStats;

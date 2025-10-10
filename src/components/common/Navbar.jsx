@@ -104,8 +104,8 @@ const Navbar = () => {
                                                                     </p>
                                                                 </Link>
                                                             ))
-                                                        ) : (<div>
-                                                            <span className='navbar-loader loadder'></span>
+                                                        ) : (<div className='flex justify-center items-center'>
+                                                            <span className='navbar-loader  loadder'></span>
                                                         </div>)
                                                     }
                                                 </div>

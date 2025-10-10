@@ -35,7 +35,7 @@ const dispatch=useDispatch();
       about: user?.additionalDetails?.about
     }
   })
-  console.log(user,'user');
+ // console.log(user,'user');
 //  console.log(convertToISO(user?.additionalDetails?.dateOfBirth) )
   useEffect(() => {
   if (user) {
@@ -182,7 +182,7 @@ const dispatch=useDispatch();
         validate: (value, formValues) => {
         console.log("form",formValues,typeof(value), value)
            if (( value !== "null") && formValues?.contactNumber?.length<=0) {
-              return "Enter your phone number2";
+              return "Enter your phone number";
             }
         
           
@@ -204,7 +204,7 @@ const dispatch=useDispatch();
                 console.log("value ",value)
                 console.log("value ",formValues,formValues?.countrycode?.length)
            if (value && (formValues?.countrycode?.length<=0 ||formValues?.countrycode === "undefined" || formValues?.countrycode === "null")) {
-              return "Enter your country code2";
+              return "Enter your country code";
             }
         
            // return true;
@@ -213,7 +213,7 @@ const dispatch=useDispatch();
             className="w-full p-3 border border-richblack-600 rounded-md bg-richblack-700 text-white placeholder-richblack-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
           />
         </div>
-         {/* ✅ Error Messages */}
+         
   {errors.countrycode && (
     <p className="text-red-500 text-sm mt-1">{errors.countrycode.message}</p>
   )}

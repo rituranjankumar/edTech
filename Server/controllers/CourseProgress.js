@@ -35,7 +35,7 @@ exports.updateCourseProgress = async (req, res) => {
     } else {
       // Check if the video is already marked as completed
       if (!courseProgress.completedVideos.includes(subSectionId)) {
-        console.log("vjnkjvkjbvajbfawjfa fahbdfabefajkwf")
+       // console.log("vjnkjvkjbvajbfawjfa fahbdfabefajkwf")
         courseProgress.completedVideos.push(subSectionId);
         await courseProgress.save();
       }
