@@ -2,6 +2,7 @@ import React from 'react'
 import {FaArrowRight} from "react-icons/fa"
 import {Link} from "react-router-dom"
 import HighlightText from '../components/core/HomePage/HighlightText'
+import { motion } from "framer-motion";
 
 import CTAButton from "../components/core/HomePage/Button"
 import Banner from "../assets/Images/banner.mp4"
@@ -62,145 +63,158 @@ const Home = () => {
         </div>
 
         {/* Code Section 1 */}
-        <div>
-            <CodeBlocks 
-                position={"lg:flex-row"}
-                heading={
-                    <div className='text-4xl font-semibold'>
-                        Unlock Your
-                        <HighlightText text={"coding potential"}/>
-                        with our online courses
-                    </div>
-                }
-                subheading = {
-                    "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
-                }
-                ctabtn1={
-                    {
-                        btnText: "try it yourself",
-                        linkto: "/signup",
-                        active: true,
-                    }
-                }
-                ctabtn2={
-                    {
-                        btnText: "learn more",
-                        linkto: "/login",
-                        active: false,
-                    }
-                }
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <CodeBlocks
+            position={"lg:flex-row"}
+            heading={<div className="text-4xl font-semibold">
+              Unlock Your <HighlightText text={"coding potential"} /> with our online courses
+            </div>}
+            subheading={"Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."}
+            ctabtn1={{ btnText: "try it yourself", linkto: "/signup", active: true }}
+            ctabtn2={{ btnText: "learn more", linkto: "/login", active: false }}
+            codeblock={`<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>`}
+            codeColor={"text-yellow-25"}
+          />
+        </motion.div>
 
-                codeblock={`<!DOCTYPE html>\n<html>\nhead><title>Example<\ntitle><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</\na><ahref="three/">Three</a>\n/nav>`}
-                codeColor={"text-yellow-25"}
-            />
-        </div>
+        {/* Code Section 2 */}
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <CodeBlocks
+            position={"lg:flex-row-reverse"}
+            heading={
+              <div className='text-4xl font-semibold'>
+                Unlock Your <HighlightText text={"coding potential"} /> with our online courses
+              </div>
+            }
+            subheading={
+              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+            }
+            ctabtn1={{
+              btnText: "try it yourself",
+              linkto: "/signup",
+              active: true,
+            }}
+            ctabtn2={{
+              btnText: "learn more",
+              linkto: "/login",
+              active: false,
+            }}
+            codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n`}
+            codeColor={"text-yellow-25"}
+          />
+        </motion.div>
 
-                {/* Code Section 2 */}
-        <div>
-            <CodeBlocks 
-                position={"lg:flex-row-reverse"}
-                heading={
-                    <div className='text-4xl font-semibold'>
-                        Unlock Your
-                        <HighlightText text={"coding potential"}/>
-                        with our online courses
-                    </div>
-                }
-                subheading = {
-                    "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
-                }
-                ctabtn1={
-                    {
-                        btnText: "try it yourself",
-                        linkto: "/signup",
-                        active: true,
-                    }
-                }
-                ctabtn2={
-                    {
-                        btnText: "learn more",
-                        linkto: "/login",
-                        active: false,
-                    }
-                }
-
-                codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n`}
-                codeColor={"text-yellow-25"}
-            />
-        </div>
-
-{/** explore more part */}
-            <ExploreMore />
+        {/* Explore More */}
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <ExploreMore />
+        </motion.div>
       </div>
 
-      {/*Section 2  */}
+      {/* Section 2 */}
       <div className='bg-pure-greys-5 text-richblack-700'>
-            <div className='homepage_bg h-[310px]'>
-
-                <div className='w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 mx-auto'>
-                    <div className='h-[150px]'></div>
-                    <div className='flex flex-row gap-7 text-white '>
-                        <CTAButton active={true} linkto={"/signup"}>
-                            <div className='flex items-center gap-3' >
-                                Explore Full Catalog
-                                <FaArrowRight />
-                            </div>
-                            
-                        </CTAButton>
-                        <CTAButton active={false} linkto={"/signup"}>
-                            <div>
-                                Learn more
-                            </div>
-                        </CTAButton>
-                    </div>
-
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className='homepage_bg h-[310px]'
+        >
+          <div className='w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 mx-auto'>
+            <div className='h-[150px]'></div>
+            <div className='flex flex-row gap-7 text-white '>
+              <CTAButton active={true} linkto={"/signup"}>
+                <div className='flex items-center gap-3'>
+                  Explore Full Catalog
+                  <FaArrowRight />
                 </div>
+              </CTAButton>
+              <CTAButton active={false} linkto={"/signup"}>
+                <div>Learn more</div>
+              </CTAButton>
+            </div>
+          </div>
+        </motion.div>
 
-
+        <div className='mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7'>
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className='flex flex-row gap-5 mb-10 mt-[95px]'
+          >
+            <div className='text-4xl font-semibold w-[45%]'>
+              Get the Skills you need for a
+              <HighlightText text={"Job that is in demand"} />
             </div>
 
-            <div className='mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7'>
-
-                <div className='flex flex-row gap-5 mb-10 mt-[95px]'>
-                    <div className='text-4xl font-semibold w-[45%]'>
-                        Get the Skills you need for a
-                        <HighlightText text={"Job that is in demand"} />
-                    </div>
-
-                    <div className='flex flex-col gap-10 w-[40%] items-start'>
-                    <div className='text-[16px]'>
-                    The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
-                    </div>
-                    <CTAButton active={true} linkto={"/signup"}>
-                        <div>
-                            Learn more
-                        </div>
-                    </CTAButton>
-                    </div>
-
-                </div>
-                
-                
-
-                <TimelineSection />
-
-                <LearningLanguageSection />
-
+            <div className='flex flex-col gap-10 w-[40%] items-start'>
+              <div className='text-[16px]'>
+                The modern StudyNotion dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+              </div>
+              <CTAButton active={true} linkto={"/signup"}>
+                <div>Learn more</div>
+              </CTAButton>
             </div>
+          </motion.div>
 
-            
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <TimelineSection />
+          </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <LearningLanguageSection />
+          </motion.div>
+        </div>
       </div>
 
+      {/* Section 3 */}
+      <div className='w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white'>
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <InstructorSection />
+        </motion.div>
 
-      {/*Section 3 */}
-      <div className='w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8   bg-richblack-900 text-white'>
-
-            <InstructorSection />
-
-            <h2 className='text-center text-4xl font-semobold mt-10'>review from Other Learners</h2>
-            {/* Review Slider here */}
-            <ReviewSlider/>
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h2 className='text-center text-4xl font-semibold mt-10'>
+            Reviews from Other Learners
+          </h2>
+          <ReviewSlider />
+        </motion.div>
       </div>
 
 

@@ -10,8 +10,8 @@ const Stats = [
 
 const StatsComponent = () => {
   return (
-  <section className="bg-richblack-800 p-8 sm:p-12 lg:p-20 rounded-l w-full">
-    <div className="flex flex-col lg:flex  xs:flex-row items-center justify-center gap-4 sm:gap-5 lg:gap-x-5 flex-wrap">
+  <section className="  bg-richblack-800 p-8 sm:p-12 lg:p-20 rounded-l    flex justify-center w-full items-center">
+    <div className="flex flex-row   xs:flex-row items-center justify-center gap-4 sm:gap-5 lg:gap-x-5 flex-wrap">
         {Stats.map((data, index) => (
             <div key={index} className="text-center min-w-[120px] xs:min-w-0 px-4 py-3 sm:py-0">
                 <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold">

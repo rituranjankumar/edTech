@@ -65,10 +65,10 @@ const ExploreMore = () => {
   </div>
 
   {/* Spacer */}
-  <div className='h-[50px] sm:h-[100px] lg:h-[150px]'></div>  
+  <div className='h-[30px] sm:h-[80px] lg:h-[120px]'></div>  
 
   {/* Course Cards Group */}
-  <div className='bg-white rounded-xl sm:flex-col md:flex-row lg:flex-row xl:flex-row flex-wrap sm:left-[-30px]   bottom-[-80px] sm:bottom-[-120px] text-richblack-900 p-2 sm:p-4 flex flex-col xs:flex-row gap-3 sm:gap-5 lg:gap-10 justify-between w-full overflow-x-auto'>
+  <div className='bg-white rounded-xl sm:flex-col sm:items-center sm:justify-center md:flex-row lg:flex-row xl:flex-row flex-wrap sm:left-[-30px]   bottom-[-80px] sm:bottom-[-120px] text-richblack-900 p-2 sm:p-4 flex flex-col xs:flex-row gap-3 sm:gap-3 lg:gap-7 justify-between w-full overflow-x-auto'>
     {
       courses?.map((element, index) => {
         return (
