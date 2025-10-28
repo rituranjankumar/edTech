@@ -21,6 +21,7 @@ const SubSectionModal = ({
     setValue,
     formState: { errors },
     getValues,
+    watch,
   } = useForm()
 
   useEffect(() => {
@@ -115,7 +116,7 @@ const SubSectionModal = ({
   }
 
   return (
-    <div className=" absolute h-[100%] inset-0   bg-black bg-opacity-60 z-50 flex items-center justify-center">
+    <div className=" absolute h-[100%] inset-0 mt-6  bg-black bg-opacity-60 z-30 flex items-center justify-center">
       <div className="w-[90%] max-w-[600px]      rounded-md bg-richblack-800 p-6 relative text-white space-y-6">
         <div className="flex items-center justify-between mb-2">
           <p className="text-xl font-semibold text-yellow-50">
@@ -138,6 +139,7 @@ const SubSectionModal = ({
             video={true}
             viewData={view ? modalData.videoUrl : null}
             editData={edit ? modalData.videoUrl : null}
+            watch={watch}
           />
 
           <div>
@@ -177,7 +179,7 @@ const SubSectionModal = ({
           {!view && (
             <div className="flex justify-end">
               <IconBtn 
-              className='transition-colors duration-150 bg-yellow-500 p-1.5 rounded hover:bg-yellow-300'
+             className="bg-yellow-400 hover:bg-yellow-500 text-richblack-900 font-semibold px-5 py-2 rounded-lg shadow-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               text={loading ? 'Loading...' : edit ? 'Save Changes' : 'Save'} />
             </div>
           )}

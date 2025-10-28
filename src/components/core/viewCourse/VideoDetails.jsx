@@ -197,10 +197,7 @@ const VideoDetails = () => {
                 {/* <LoadingSpinner /> */}
 
               
-                <div className="hidden md:flex items-center gap-2">
-                  <ReplayControl seconds={10} order={2.1} />
-                  <ForwardControl seconds={10} order={3.1} />
-                </div>
+                
 
                  
                 <PlaybackRateMenuButton rates={[2, 1.5, 1.25, 1, 0.75, 0.5]} />

@@ -71,7 +71,7 @@ export async function buyCourse(courses, token, navigate, dispatch, userDetails)
 
             },
             handler: function (response) {
-                        console.log("response ",response )
+                       // console.log("response ",response )
                 //send successfull mail
                 sendVerificationMail(response.razorpay_payment_id, response.razorpay_order_id, orderResponse?.data?.message.amount, token);
                 //verify signature
@@ -121,7 +121,7 @@ async function sendVerificationMail(paymentId, orderId, amount, token) {
             {
                 Authorization: `Bearer ${token}`
             })
-                console.log("payment mail response ",response);
+              //  console.log("payment mail response ",response);
             if(response)
             {
                 toast.success("email has been sent to your registered email ID");

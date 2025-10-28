@@ -16,7 +16,7 @@ import MyProfile from "./components/core/Dashboard/MyProfile";
 import Dashboard from "./pages/Dashboard";
 import Setting from "./components/core/Dashboard/Setting";
 import PrivateRoute from "./components/core/Auth/PrivateRoutes"
-import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourse";
 import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse";
 import { useState } from "react";
@@ -27,7 +27,6 @@ import CourseDetails from "./pages/CourseDetails";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import ViewCourse from "./pages/ViewCourseLectures";
 import VideoDetails from "./components/core/viewCourse/VideoDetails"
-import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import { jwtDecode } from "jwt-decode";
 import { setToken } from "./slices/authSlice";
 import { setUser } from "./slices/profileSlice";
@@ -36,6 +35,8 @@ import toast from "react-hot-toast";
 import VerifyInstructor from "./components/InstructorVerfication/InstructorVerificationByAdmin";
 import InstructorVerificationByAdmin from "./components/InstructorVerfication/InstructorVerificationByAdmin";
 import CreateCategory from "./components/core/Dashboard/CreateCategory";
+import Admin from "./components/core/Dashboard/Admin/Admin";
+import AdminCourse from "./components/core/Dashboard/MyCourses/AdminCourses";
 
 function App() {
 
@@ -169,9 +170,10 @@ useEffect(() => {
           {user && user.accountType === "Student" && ( <Route path="cart" element={<Cart />} />)}
          
           <Route path="enrolled-courses" element={<EnrolledCourses />} />
-            {user && user.accountType==="Instructor" && (<Route path="my-courses" element={<InstructorCourse/>}/>)}
+            {user && (user.accountType==="Instructor" ) && (<Route path="my-courses" element={<InstructorCourse/>}/>)}
+             {user && (user.accountType==="Admin") && (<Route path="Admin-courses" element={<AdminCourse/>}/>)}
           {user && user.accountType==="Instructor" && (<Route path="add-course" element={<AddCourse/>}/>)}
-           {user && user.accountType==="Instructor" && (<Route path="instructor" element={<Instructor/>}/>)}
+           {user && user.accountType==="Admin" && (<Route path="admin" element={<Admin/>}/>)}
         </Route>
 
         <Route path="catalog/:catalogName" element={<Catalog/>}/>

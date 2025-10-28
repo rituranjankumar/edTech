@@ -143,7 +143,7 @@ useEffect(() => {
 
 
     return (
-        <div className="w-full space-y-2">
+        <div className="w-full space-y-2  ">
             <label htmlFor={name} className="text-sm text-richblack-5">
                 {label} <sup className="text-pink-200">*</sup>
             </label>

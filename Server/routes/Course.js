@@ -12,7 +12,8 @@ const {
     getInstructorCourses,
     editCourse,
     deleteCourse,
-    getFullCourseDetails
+    getFullCourseDetails,
+    getAdminCourses
   } = require("../controllers/Course")
   
   
@@ -92,6 +93,7 @@ router.get("/getReviews", getAllRating)
 
 //instructor course
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
+router.get("/getAdminCourses",auth,isAdmin,getAdminCourses);
 router.delete("/deleteCourse",auth,isInstructor,deleteCourse);
 
 

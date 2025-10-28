@@ -388,6 +388,42 @@ exports.getInstructorCourses = async (req, res) => {
     }
 }
 
+exports.getAdminCourses = async (req, res) => {
+    try {
+         
+        const courses = await Course.find()
+            .populate({
+                path: "courseContent",
+                populate: {
+                    path: "subSection",
+                },
+            })
+            .populate(
+                {
+                    path: "ratingAndReviews",
+                    populate: {
+                        path: "user",
+                    }
+                }
+            )
+            .populate("category")
+            .populate("studentsEnrolled").
+            populate("instructor");
+
+        return res.status(200).json({
+            success: true,
+            message: "Courses created by instructor fetched successfully",
+            data: courses
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error fetching instructor courses",
+            error: error.message
+        });
+    }
+}
+
 exports.editCourse = async (req, res) => {
     try {
         const {

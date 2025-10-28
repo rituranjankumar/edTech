@@ -22,6 +22,7 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  GET_ALL_ADMIN_COURSES_API
 } = courseEndpoints
 
 export const getAllCourses = async () => {
@@ -310,9 +311,34 @@ export const fetchInstructorCourses = async (token) => {
   return result
 }
 
+
+export const fetchAdminCourses = async (token) => {
+  let result = []
+  //const toastId = toast.loading("Loading...")
+  try {
+    const response = await apiConnector(
+      "GET",
+      GET_ALL_ADMIN_COURSES_API,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+    //console.log("ADMIN COURSES API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Fetch Admin Courses")
+    }
+    result = response?.data?.data
+  } catch (error) {
+    //  console.log("ADMIN COURSES API ERROR............", error)
+    toast.error(error.message)
+  }
+  //toast.dismiss(toastId)
+  return result
+}
 // delete a course
 export const deleteCourse = async (data, token) => {
-  const toastId = toast.loading("Loading...")
+  const toastId = toast.loading("deleting course...")
   try {
     const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
       Authorization: `Bearer ${token}`,
@@ -321,7 +347,7 @@ export const deleteCourse = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Delete Course")
     }
-    toast.success("Course Deleted")
+    toast.success("Course Deleted successfully")
   } catch (error) {
     console.log("DELETE COURSE API ERROR............", error)
     toast.error(error.message)
@@ -421,7 +447,7 @@ export async function getInstructorData(token) {
   const toastId = toast.loading("loading...");
   let result = [];
   try {
-    const response = await apiConnector("GET", profileEndpoints.GET_INSTRUCTOR_DASHBOARD_API, null, {
+    const response = await apiConnector("GET", profileEndpoints.GET_ADMIN_DASHBOARD_API, null, {
       Authorization: `Bearer ${token}`,
     })
 

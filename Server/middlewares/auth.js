@@ -69,6 +69,21 @@ exports.isInstructor = async (req, res, next) => {
 
     try {
         const role = req.user.accountType;
+        console.log("role is  IS  -> ",role);
+        // if the user is admin then it can access the instructor route
+        if (role === "Admin") {
+            const user = await User.findById(req.user.id);
+                console.log("USER IS  -> ",user);
+            if (!user) {
+                return res.status(404).json({
+                    success: false,
+                    message: "User not found",
+                });
+            }
+          return  next();
+        }
+
+
         if (role !== "Instructor") {
             return res.status(401).json({
                 success: false,

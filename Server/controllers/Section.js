@@ -24,7 +24,12 @@ exports.createSection = async (req, res) => {
                 $push: { courseContent: newSection._id }
             },
             { new: true }
-        ).populate("courseContent").exec();
+        ).select("-courseDescription -instructor -whatYouWillLearn").populate({
+            path:"courseContent",
+            populate:{
+                path:"subSection",
+            },
+        }).exec();
 
         //return response
 
@@ -68,7 +73,7 @@ exports.updateSection = async (req, res) => {
 
         const updatedCourse= await  Course.findOne({
             courseContent:{$in:[sectionId]},
-        }).populate({
+        }).select("-courseDescription -instructor -whatYouWillLearn").populate({
             path:"courseContent",
             populate:{
                 path:"subSection",
@@ -113,7 +118,7 @@ exports.deleteSection = async (req, res) => {
             { courseContent: sectionId },
              { $pull: { courseContent: sectionId } } ,
               { new: true }
-        ).populate({
+        ).select("-courseDescription -instructor -whatYouWillLearn").populate({
         path: "courseContent",
         populate: {
           path: "subSection",

@@ -53,7 +53,7 @@ const PublishCourse = () => {
         const result=await editCourseDetails(formData,token);
         if(result)
         {
-            console.log("result of public ", result);
+          //  console.log("result of public ", result);
             goToCourses();
         }
 
@@ -71,42 +71,53 @@ const PublishCourse = () => {
 
     }
   return (
-    <div className='rounded-md border-[1px] mt-4 bg-richblack-800 p-6 border-richblack-700'> 
-    
-    <p>Publish Course</p>
-    
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="rounded-md border border-richblack-700 mt-6 bg-richblack-800 p-6 shadow-sm">
+  <p className="text-richblack-25 text-lg font-semibold mb-4 border-b border-richblack-700 pb-2">
+    Publish Course
+  </p>
 
-        <div>
-
-        <input type='checkbox'  
-            id='public'
-            {...register("public")}
-            className='rounded h-4 w-4 m-2'
-             ></input>
-            <label htmlFor='public'>Make this course as public</label>
-
-            
-        </div>
-
-            <div className='flex justify-end gap-x-3 '>
-                <button 
-                disabled={loading}
-                type='button'
-                onClick={goBack}
-                className='flex items-center bg-richblack-600 p-1.5  rounded-md'
-                >Back</button>
-
-                <IconBtn 
-
-                  type="submit"
-                    disabled={loading}
-                     text={loading ? "Saving..." : "Save changes"}
-                    className='bg-yellow-300 p-1.5 rounded-md text-white'  
-                />
-            </div>
-    </form>
+  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    {/* Checkbox Section */}
+    <div className="flex items-center gap-3">
+      <input
+        type="checkbox"
+        id="public"
+        {...register("public")}
+        className=" accent-yellow-500 h-5 w-5 border-2 border-richblack-400 rounded-md 
+        bg-transparent checked:bg-yellow-400 checked:border-yellow-400
+        transition-all duration-300 ease-in-out
+        cursor-pointer hover:border-yellow-300 hover:scale-105
+        focus:outline-none focus:ring-2 focus:ring-yellow-400"
+      />
+      <label
+        htmlFor="public"
+        className="text-richblack-50 text-sm md:text-base cursor-pointer hover:text-yellow-200 transition-colors"
+      >
+        Make this course public
+      </label>
     </div>
+
+    {/* Button Section */}
+    <div className="flex justify-end gap-3 pt-2">
+      <button
+        disabled={loading}
+        type="button"
+        onClick={goBack}
+        className="flex items-center gap-2 bg-richblack-700 hover:bg-richblack-600 text-richblack-25 px-4 py-2 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ← Back
+      </button>
+
+      <IconBtn
+        type="submit"
+        disabled={loading}
+        text={loading ? 'Saving...' : 'Save changes'}
+        className="bg-yellow-400 hover:bg-yellow-500 text-richblack-900 font-semibold px-5 py-2 rounded-lg shadow-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      />
+    </div>
+  </form>
+</div>
+
   )
 }
 

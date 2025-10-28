@@ -354,13 +354,13 @@ exports.getEnrolledCourses = async (req, res) => {
     }
 };
 
-exports.instructorDashboard=async(req,res)=>
+exports.AdminDashboard=async(req,res)=>
 {
     try{
 
         
         const InstructorId=req.user.id;
-          const courseDetails=await Course.find({instructor:InstructorId}) 
+          const courseDetails=await Course.find() 
           
           const courseData=courseDetails.map((course)=>
         {
