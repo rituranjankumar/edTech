@@ -77,12 +77,16 @@ const profileRoutes = require("./routes/Profile");
 const paymentRoutes = require("./routes/Payments");
 const courseRoutes = require("./routes/Course");
 const ContactUsRoute=require("./routes/ContactUsRoute");
+ const cartRoutes=require("./routes/Cart")
+
+
 //mount routes
 app.use("/api/v1/auth",userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1",ContactUsRoute);
+app.use("/api/v1/cart", cartRoutes);
 //db connect
 const  {dbConnect} = require("./config/database");
 dbConnect();

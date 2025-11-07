@@ -3,13 +3,14 @@ import logo from "../../assets/Logo/Logo-Full-Light.png"
 import { Link, matchPath } from 'react-router-dom'
 import { NavbarLinks } from "../../data/navbar-links"
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
 import { apiConnector } from '../../services/apiconnector'
 import { categories } from '../../services/apis'
 import { useState } from 'react'
 import { IoIosArrowDropdownCircle } from "react-icons/io"
+import { loadUserCartAPI } from '../../services/operations/CartApi'
 
 
 const subLinks = [
@@ -30,7 +31,7 @@ const Navbar = () => {
     const { user } = useSelector((state) => state.profile);
     const { totalItems } = useSelector((state) => state.cart)
     const location = useLocation();
-
+    const dispatch = useDispatch();
     const [ssubLinks, setSsubLinks] = useState([]);
     // console.log("Token:", token);
     // console.log("User:", user);
@@ -51,6 +52,12 @@ const Navbar = () => {
     useEffect(() => {
         fetchSublinks();
     }, [])
+
+    useEffect(() => {
+        if (token && user.accountType === "Student") {
+            dispatch(loadUserCartAPI(token));   //  fetch cart once user logs in
+        }
+    }, [token,dispatch]);
 
 
 
@@ -164,8 +171,8 @@ const Navbar = () => {
                                                         </Link>
                                                     ))
                                                 ) : (<div>
-                                                <span className='loadder navbar-loader'></span>
-                                                
+                                                    <span className='loadder navbar-loader'></span>
+
                                                 </div>)
                                             }
                                         </div>

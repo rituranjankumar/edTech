@@ -59,14 +59,14 @@ exports.createCourse = async (req, res) => {
 
         // Validate category
         const categoryDetails = await Category.findById(category);
-        console.log("category details in adding course ", categoryDetails);
+     //   console.log("category details in adding course ", categoryDetails);
         if (!categoryDetails) {
             return res.status(404).json({
                 success: false,
                 message: "Category not found",
             });
         }
-
+console.log(" BEFORE -> Image uploaded to Cloudinary:" );
         // Upload thumbnail to Cloudinary
         const thumbnailImage = await uploadImageToCloudinary(
             thumbnail,
@@ -135,7 +135,7 @@ exports.createCourse = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Something went wrong while creating the course",
-            error: error.message,
+            error: error,
         });
     }
 };

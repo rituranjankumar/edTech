@@ -180,7 +180,7 @@ const dispatch=useDispatch();
             <select {...register("countrycode",  {
             
         validate: (value, formValues) => {
-        console.log("form",formValues,typeof(value), value)
+     //   console.log("form",formValues,typeof(value), value)
            if (( value !== "null") && formValues?.contactNumber?.length<=0) {
               return "Enter your phone number";
             }
@@ -201,8 +201,8 @@ const dispatch=useDispatch();
             {...register("contactNumber", {
           validate: (value, formValues) => {
            
-                console.log("value ",value)
-                console.log("value ",formValues,formValues?.countrycode?.length)
+               // console.log("value ",value)
+               // console.log("value ",formValues,formValues?.countrycode?.length)
            if (value && (formValues?.countrycode?.length<=0 ||formValues?.countrycode === "undefined" || formValues?.countrycode === "null")) {
               return "Enter your country code";
             }

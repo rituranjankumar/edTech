@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { addToCart } from '../../../slices/cartSlice';
+ 
 import { FaShareAlt } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import { addToCartAPI } from '../../../services/operations/CartApi';
 
 const CourseDetailsCard = ({ course, handleBuyCourse }) => {
   const { user } = useSelector((state) => state.profile);
@@ -21,7 +22,9 @@ const CourseDetailsCard = ({ course, handleBuyCourse }) => {
         navigate("/login");
         return ; 
     }
-    dispatch(addToCart(course))
+
+    // here add the courser to the db 
+    dispatch(addToCartAPI(course._id,token))
     navigate("/dashboard/cart")
   }
   let parsedInstructions = [];

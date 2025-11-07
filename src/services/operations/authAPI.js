@@ -6,6 +6,7 @@ import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { endpoints } from "../apis"
 import { settingsEndpoints,profileEndpoints } from "../apis"
+import { loadUserCartAPI } from "./CartApi"
 const {
   SENDOTP_API,
   SIGNUP_API,
@@ -168,10 +169,12 @@ export function login({email, password}, navigate) {
         ? response.data.user.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
         
+      //  console.log("user data",response.data.user)
       dispatch(setUser({ ...response.data.user, image: userImage }))
       localStorage.setItem("token", JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.user));
       navigate("/dashboard/my-profile")
+      
     } catch (error) {
     //  console.log("LOGIN API ERROR............", error)
       toast.error("Login Failed",
@@ -308,9 +311,9 @@ export function logout(navigate) {
     dispatch(resetCart())
     localStorage.removeItem("token")
     localStorage.removeItem("user")
-    localStorage.removeItem("cart" )
-    localStorage.removeItem("total" )
-    localStorage.removeItem("totalItems" )
+    // localStorage.removeItem("cart" )
+    // localStorage.removeItem("total" )
+    // localStorage.removeItem("totalItems" )
     toast.success("Logged Out")
     navigate("/")
   }

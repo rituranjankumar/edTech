@@ -4,6 +4,7 @@ import { apiConnector } from '../apiconnector';
 import { setPaymentLoading } from '../../slices/courseSlice';
 import { resetCart } from '../../slices/cartSlice';
 import { useSelector } from 'react-redux';
+import { resetCartAPI } from './CartApi';
 const { COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API } = studentEndpoints;
 
 const RZPlogoUrl = "https://razorpay.com/assets/razorpay-glyph.svg"
@@ -149,9 +150,11 @@ async function verifySignature(razorpay_order_id, razorpay_payment_id,  razorpay
             if(!response.data.success) {
                 throw new Error(response.data.message);
             }
+
             toast.success("payment Successful, you are addded to the course");
+            dispatch(resetCartAPI(token))
             navigate("/dashboard/enrolled-courses");
-            dispatch(resetCart());
+             
         }   
         catch(error) {
            // console.log("PAYMENT VERIFY ERROR....", error);

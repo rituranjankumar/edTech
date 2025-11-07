@@ -97,7 +97,7 @@ const removeImage = async () => {
     );
 
     const updatedUser = response.data.data; 
-  //  console.log("updated user after image removal",updatedUser)
+   // console.log("updated user after image removal",updatedUser)
     updatedUser.image = updatedUser?.image
         ? updatedUser?.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${updatedUser.firstName} ${updatedUser.lastName}`

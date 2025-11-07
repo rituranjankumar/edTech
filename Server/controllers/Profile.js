@@ -66,7 +66,7 @@ exports.updateProfile = async (req, res) => {
                 lastName: lastName
             },
             { new: true }
-        )
+        ).populate("additionalDetails").select("-courses -courseProgress")
 
         if (!userProfile) {
             return res.status(404).json({
@@ -234,7 +234,7 @@ exports.updateDisplayPicture = async (req, res) => {
             },
 
             { new: true }
-        )
+        ).populate("additionalDetails").select("-courses -courseProgress")
         res.send({
             success: true,
             message: `Image Updated successfully`,
@@ -254,7 +254,7 @@ exports.updateDisplayPicture = async (req, res) => {
 exports.removeDisplayPicture = async (req, res) => {
     try {
         const userId = req.user.id;
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).populate("additionalDetails").select("-courses -courseProgress");
 
         if (!user) return res.status(404).json({ message: "User not found" });
 
@@ -359,7 +359,7 @@ exports.AdminDashboard=async(req,res)=>
     try{
 
         
-        const InstructorId=req.user.id;
+       // const InstructorId=req.user.id;
           const courseDetails=await Course.find() 
           
           const courseData=courseDetails.map((course)=>
