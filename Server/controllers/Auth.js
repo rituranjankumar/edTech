@@ -33,12 +33,11 @@ require("dotenv").config();
         }
 
         //check if otp is unique or not and generating the otp untill a unique otp is not generated
+
         let otp;
         let isUnique = false;
-        let attempts = 0;
 
-        while (!isUnique && attempts < 10) {
-            attempts++;
+        while (!isUnique) {
             otp = otpGenerator.generate(6, {
                 upperCaseAlphabets: false,
                 specialChars: false,
@@ -49,30 +48,17 @@ require("dotenv").config();
             if (!existingotp) {
                 isUnique = true;
             }
-        }
 
-        if (!isUnique) {
-            return res.status(500).json({
-                success: false,
-                message: "Unable to generate OTP, please try again."
-            });
         }
-
         console.log("OTP generated ->", otp);
 
-        // Send OTP email from controller so we can surface errors in production.
-        try {
-            await mailSender(email, "Verification Email from Edtech", require("../mail/templates/emailVerificationTemplate")(otp));
-        } catch (mailErr) {
-            console.error("Failed to send OTP email:", mailErr && (mailErr.message || mailErr));
-            return res.status(502).json({ success: false, message: "Failed to send OTP email. Please try again later." });
-        }
+        //otp entry in db
+        //before entriing the otp in db the pre middleware will send the otp to the email provided
+        const otpBody = await Otp.create({ email, otp });
 
-        // Persist OTP but skip model pre-save email to avoid double-send
-        const otpBody = await Otp.create({ email, otp, skipEmail: true });
         console.log("otp body saved in db-> ", otpBody);
-
         // return response
+
         res.status(200).json({
             success: true,
             message: `OTP sent successfully `

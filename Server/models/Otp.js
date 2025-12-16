@@ -10,10 +10,6 @@ const otp=new mongoose.Schema({
     type:Number,
     required:true
  },
- skipEmail: {
-    type: Boolean,
-    default: false,
-  },
  createdAt:{
     type:Date,
     default:Date.now(),
@@ -35,13 +31,12 @@ async function sendVerificationEmail(email,otp)
    } 
 }
 // pre middleware for otp verification
-// Only send email here when `skipEmail` is false. Controllers can set
-// `skipEmail: true` to send and persist from the controller (so errors
-// can be surfaced to the client) without double-sending.
+// Fire-and-forget: send email asynchronously without blocking DB save
 otp.pre("save", function(next) {
-   if (this.skipEmail) return next();
-   // fire-and-forget so save isn't blocked
-   sendVerificationEmail(this.email, this.otp).catch((error) => {
+   sendVerificationEmail(this.email, this.otp).then(()=>
+   {
+      console.log("otp send successfull",this.otp)
+   }).catch((error) => {
       console.log("error in sending verifiction otp -> ", error);
    });
    next();
