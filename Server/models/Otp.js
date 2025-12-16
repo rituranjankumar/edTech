@@ -31,9 +31,13 @@ async function sendVerificationEmail(email,otp)
    } 
 }
 // pre middleware for otp verification
-otp.pre("save",async function(next)
-{
-   await sendVerificationEmail(this.email,this.otp);//email and otp from current schema
-   next(); 
+// Send the verification email asynchronously so saving the OTP
+// to the database doesn't block on the external mail service.
+otp.pre("save", function(next) {
+ 
+   sendVerificationEmail(this.email, this.otp).catch((error) => {
+      console.log("error in sending verifiction otp -> ", error);
+   });
+   next();
 })
 module.exports = mongoose.model("Otp",otp);

@@ -21,4 +21,6 @@ const ratingAndReview=new mongoose.Schema({
     }
      
 });
+// Index to speed up lookups/aggregations by course
+ratingAndReview.index({ course: 1 });
 module.exports = mongoose.model("RatingAndReview",ratingAndReview);

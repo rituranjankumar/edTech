@@ -56,7 +56,7 @@ const Catalog = () => {
    <div>
   {categoryId ? (
     <div className="text-white bg-richblack-900 min-h-screen">
-      {/* Breadcrumb */}
+       
       <div className="px-4 sm:px-6 lg:px-20 py-4 sm:py-6">
         <p className="text-xs sm:text-sm text-richblack-300">
           Home / Catalog /{" "}
