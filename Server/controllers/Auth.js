@@ -33,11 +33,12 @@ require("dotenv").config();
         }
 
         //check if otp is unique or not and generating the otp untill a unique otp is not generated
-
         let otp;
         let isUnique = false;
+        let attempts = 0;
 
-        while (!isUnique) {
+        while (!isUnique && attempts < 10) {
+            attempts++;
             otp = otpGenerator.generate(6, {
                 upperCaseAlphabets: false,
                 specialChars: false,
@@ -48,8 +49,15 @@ require("dotenv").config();
             if (!existingotp) {
                 isUnique = true;
             }
-
         }
+
+        if (!isUnique) {
+            return res.status(500).json({
+                success: false,
+                message: "Unable to generate OTP, please try again."
+            });
+        }
+
         console.log("OTP generated ->", otp);
 
         // Send OTP email from controller so we can surface errors in production.
