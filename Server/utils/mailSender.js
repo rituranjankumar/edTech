@@ -3,9 +3,9 @@ require("dotenv").config();
 
 const mailSender = async (email, title, body) => {
   try {
-    const host = process.env.host;     // smtp.gmail.com
-    const user = process.env.user;     // gmail id
-    const pass = process.env.pass;     // app password
+    const host = process.env.SMTP_HOST;     // smtp.gmail.com
+    const user = process.env.SMTP_USER;     // gmail id
+    const pass = process.env.SMTP_PASS;     // app password
     const port = 587;                  // Gmail TLS port (FIXED)
 
     if (!host || !user || !pass) {
