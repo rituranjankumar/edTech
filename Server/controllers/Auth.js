@@ -52,13 +52,19 @@ require("dotenv").config();
         }
         console.log("OTP generated ->", otp);
 
-        //otp entry in db
-        //before entriing the otp in db the pre middleware will send the otp to the email provided
-        const otpBody = await Otp.create({ email, otp });
+        // Send OTP email from controller so we can surface errors in production.
+        try {
+            await mailSender(email, "Verification Email from Edtech", require("../mail/templates/emailVerificationTemplate")(otp));
+        } catch (mailErr) {
+            console.error("Failed to send OTP email:", mailErr && (mailErr.message || mailErr));
+            return res.status(502).json({ success: false, message: "Failed to send OTP email. Please try again later." });
+        }
 
+        // Persist OTP but skip model pre-save email to avoid double-send
+        const otpBody = await Otp.create({ email, otp, skipEmail: true });
         console.log("otp body saved in db-> ", otpBody);
-        // return response
 
+        // return response
         res.status(200).json({
             success: true,
             message: `OTP sent successfully `
