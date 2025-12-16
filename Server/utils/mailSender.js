@@ -1,29 +1,39 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+
 const mailSender = async (email, title, body) => {
-    try {
-        let transporter = nodemailer.createTransport({
-            host: process.env.host,
-            //port: 587,
-            //  secure: false, // true for port 465, false for other ports
-            auth: {
-                user: process.env.user,
-                pass: process.env.pass,
-            },
+  try {
+    const host = process.env.host;     // smtp.gmail.com
+    const user = process.env.user;     // gmail id
+    const pass = process.env.pass;     // app password
+    const port = 587;                  // Gmail TLS port (FIXED)
 
-        });
+    if (!host || !user || !pass) {
+      throw new Error("Missing mail environment variables");
+    }
 
-        const info = await transporter.sendMail({
-            from: "EdTech->Rituranjan Kumar",
-            to: `${email}`,
-            subject: `${title}`,
-            html: `${body}`
-        });
-        console.log("otpInfo->", info);
-    }
-    catch (error) {
-        console.log(error.message);
-    }
-}
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: false,                   // true ONLY for 465
+      auth: { user, pass },
+    });
+
+    await transporter.verify();        // ensures SMTP connection works
+
+    const info = await transporter.sendMail({
+      from: `EdTech <${user}>`,
+      to: email,
+      subject: title,
+      html: body,
+    });
+
+    console.log("Mail sent:", info.messageId);
+    return info;
+  } catch (error) {
+    console.error("mailSender error:", error);
+    throw error;
+  }
+};
 
 module.exports = mailSender;
