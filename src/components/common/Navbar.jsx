@@ -81,7 +81,7 @@ const Navbar = () => {
                             NavbarLinks.map((link, index) => (
                                 <li key={index}>
                                     {
-                                        link.title === "Catalog" ? (
+                                        link.title === "Courses" ? (
                                             <div className='relative   flex   items-center gap-1 sm:gap-2 group'>
                                                 <p>{link.title}</p>
                                                 <IoIosArrowDropdownCircle />
@@ -140,7 +140,7 @@ const Navbar = () => {
                     (
                         <li key={index}>
                             {
-                                link.title === "Catalog" ? (
+                                link.title === "Courses" ? (
                                     <div className='relative       items-center    gap-2 group'>
                                         <p className='text-white text-[0.75rem] sm:text-sm'>{link.title}</p>
                                         <IoIosArrowDropdownCircle />
