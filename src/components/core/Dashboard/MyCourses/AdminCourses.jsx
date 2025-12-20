@@ -15,7 +15,7 @@ const AdminCourse = () => {
   const getAllCourses = async () => {
     try {
       setLoading(true);
-      // NOTE: Using the user's original logic which assumes the response is the courses array
+      
       const response = await fetchAdminCourses(token);
       if (response) {
         // Sort by creation date (newest first) for better display
@@ -62,7 +62,7 @@ const AdminCourse = () => {
       
        
       {loading ? (
-        // Enhanced Loading State
+        
         <div className="flex flex-col justify-center items-center py-20 bg-richblack-800 rounded-lg shadow-inner  ">
           <div className="w-16 h-16 border-4 border-t-yellow-50 border-richblack-700 rounded-full animate-spin"></div>
           <p className="mt-4 text-yellow-50 font-medium text-lg">Loading Courses...</p>

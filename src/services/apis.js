@@ -12,6 +12,7 @@ export const endpoints = {
 // PROFILE ENDPOINTS
 export const profileEndpoints = {
   GET_ADMIN_DASHBOARD_API:BASE_URL+"/profile/adminDashboard",
+  GET_INSTRUCTOR_DASHBOARD_API:BASE_URL+"/profile/instructorDashboard",
   GET_USER_DETAILS_API: BASE_URL + "/profile/getUserDetails",
   GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
   VERIFY_INSTRUCTOR:BASE_URL+"/profile/verify-instructors",

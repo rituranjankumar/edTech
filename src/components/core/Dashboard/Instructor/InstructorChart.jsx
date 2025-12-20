@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const AdminChart = ({ courses }) => {
+const InstructorChart = ({ courses }) => {
   const [currChart, setCurrChart] = useState("students");
 
   // Function to generate random colors
@@ -77,4 +77,4 @@ const AdminChart = ({ courses }) => {
   );
 };
 
-export default AdminChart;
+export default InstructorChart;

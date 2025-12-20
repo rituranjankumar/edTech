@@ -8,6 +8,8 @@ const {
   updateDisplayPicture,
   getEnrolledCourses,
   removeDisplayPicture,
+   
+  instructorDashboard,
   AdminDashboard
 } = require("../controllers/Profile")
 const { getPendingAccount, verifyInstructor } = require("../controllers/InstructorVerification")
@@ -26,6 +28,7 @@ router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)
 router.put('/remove-display-picture', auth, removeDisplayPicture); 
 
+router.get("/instructorDashboard",auth,isInstructor,instructorDashboard)
 router.get("/adminDashboard",auth,isAdmin,AdminDashboard)
 
 

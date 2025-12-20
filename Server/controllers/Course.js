@@ -396,24 +396,48 @@ exports.getAdminCourses = async (req, res) => {
                 path: "courseContent",
                 populate: {
                     path: "subSection",
+                     select: "_id",
                 },
             })
             .populate(
                 {
                     path: "ratingAndReviews",
-                    populate: {
-                        path: "user",
-                    }
+                   select: "rating"
                 }
             )
-            .populate("category")
-            .populate("studentsEnrolled").
-            populate("instructor");
+            .populate({
+                path:"category",
+                select:"name"
+            })
+            .populate({
+                path:"instructor",
+                select:"firstName lastName email"
+            }).lean();
+
+            const formattedCourses = courses.map(course => {
+  const reviews = course.ratingAndReviews || [];
+
+  let avgRating = 0;
+
+  if (reviews.length > 0) {
+    const totalRating = reviews.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
+    avgRating = (totalRating / reviews.length).toFixed(1);
+  }
+
+  return {
+    ...course,
+    avgRating: Number(avgRating),
+    totalRatings: reviews.length
+  };
+});
 
         return res.status(200).json({
             success: true,
             message: "Courses created by instructor fetched successfully",
-            data: courses
+            data: formattedCourses
         });
     } catch (error) {
         return res.status(500).json({
@@ -423,6 +447,8 @@ exports.getAdminCourses = async (req, res) => {
         });
     }
 }
+
+ 
 
 exports.editCourse = async (req, res) => {
     try {

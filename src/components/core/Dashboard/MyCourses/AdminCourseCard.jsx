@@ -4,7 +4,7 @@ import { FaUsers, FaBookOpen } from "react-icons/fa";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { MdOutlineDateRange } from "react-icons/md";
 import ConfirmationModal from "../../../common/ConfirmationModal";
-
+import RatingStars from "../../../common/RatingStars";
 const AdminCourseCard = ({ course, deleteCourseHandler }) => {
   const courseName = course.Name || "Untitled Course";
   const studentsEnrolledCount = course.studentsEnrolled?.length || 0;
@@ -12,6 +12,8 @@ const AdminCourseCard = ({ course, deleteCourseHandler }) => {
   const categoryName = course.category?.name || "Uncategorized";
   const courseThumbnail = course.thumbnail;
   const status = course.status || "Draft";
+  const avgRating=course?.avgRating || 0
+  const totalRating=course?.totalRatings || 0
   const createdAt = new Date(course.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -80,6 +82,25 @@ const AdminCourseCard = ({ course, deleteCourseHandler }) => {
             <MdOutlineDateRange className="w-4 h-4 mr-1 text-pink-300" />
             <span className="text-richblack-300">{createdAt}</span>
           </div>
+
+         <div className="flex flex-col gap-1 bg-richblack-700/50 rounded-md px-3 py-2 shadow-sm">
+  
+  {/* Average Rating */}
+              <div className="flex items-center gap-2">
+                <RatingStars Review_Count={avgRating} Star_Size={18} />
+                <span className="text-sm font-semibold text-richblack-50">
+                  {avgRating || "0.0"}
+                </span>
+              </div>
+
+              {/* Total Ratings */}
+              <p className="text-xs text-richblack-300">
+                {totalRating > 0
+                  ? `${totalRating} ${totalRating === 1 ? "Review" : "Reviews"}`
+                  : "No reviews yet"}
+              </p>
+            </div>
+
         </div>
       </div>
 
