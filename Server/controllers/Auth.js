@@ -352,3 +352,46 @@ exports.PasswordChange = async (req, res) => {
         });
     }
 }
+
+
+exports.createAdmin = async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+
+    // check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User already exists",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newAdmin = await User.create({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+      role: "Admin",
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Admin created successfully",
+      admin: {
+        id: newAdmin._id,
+        email: newAdmin.email,
+        role: newAdmin.role,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to create admin",
+    });
+  }
+};
+

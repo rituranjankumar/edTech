@@ -447,7 +447,7 @@ export async function getInstructorData(token) {
   const toastId = toast.loading("loading...");
   let result = [];
   try {
-    const response = await apiConnector("GET", profileEndpoints.GET_ADMIN_DASHBOARD_API, null, {
+    const response = await apiConnector("GET", profileEndpoints.GET_INSTRUCTOR_DASHBOARD_API, null, {
       Authorization: `Bearer ${token}`,
     })
 
@@ -462,3 +462,37 @@ export async function getInstructorData(token) {
 
   return result;
 }
+
+export async function getAdminDashData(token) {
+  const toastId = toast.loading("loading...");
+  let result = {
+    courses: [],
+    topCourses: [],
+    topInstructors: [],
+    instructors: [],
+  };
+
+  try {
+    const response = await apiConnector(
+      "GET",
+      profileEndpoints.GET_ADMIN_DASHBOARD_API,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+
+    if (response?.data?.success) {
+      result.courses = response.data.courses || [];
+      result.topCourses = response.data.topCourses || [];
+      result.topInstructors = response.data.topInstructors || [];
+      result.instructors = response.data.instructors || [];
+    }
+  } catch (error) {
+    toast.error("Failed to load admin dashboard");
+  }
+
+  toast.dismiss(toastId);
+  return result;
+}
+

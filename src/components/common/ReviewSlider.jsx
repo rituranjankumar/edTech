@@ -20,7 +20,7 @@ const ReviewSlider = () => {
         }
     }
 
-    console.log("reviews in the home page ", reviews);
+    // console.log("reviews in the home page ", reviews);
 
     useEffect(() => {
         fetchReviews();

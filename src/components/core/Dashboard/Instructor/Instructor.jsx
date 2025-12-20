@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { fetchAdminCourses, getInstructorData } from '../../../../services/operations/courseDetailsAPI';
+import {   fetchInstructorCourses, getInstructorData } from '../../../../services/operations/courseDetailsAPI';
 import { Link } from 'react-router-dom';
-import InstructorChart from './AdminChart';
+import InstructorChart from './InstructorChart';
 import { HiHandRaised } from "react-icons/hi2";
 
-const Admin = () => {
+const Instructor = () => {
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false);
   const [instructorData, setInstructorData] = useState([]);
@@ -16,7 +16,7 @@ const Admin = () => {
     setLoading(true);
     try {
       const instructorApiData = await getInstructorData(token);
-      const result = await fetchAdminCourses(token);
+      const result = await fetchInstructorCourses(token);
 
       if (instructorApiData.length > 0) setInstructorData(instructorApiData);
       if (result) setCourse(result);
@@ -89,7 +89,7 @@ const Admin = () => {
             <div className="flex justify-between items-center mb-4">
               <p className="text-lg font-semibold">Your Courses</p>
               <Link
-                to="/dashboard/Admin-courses"
+                to="/dashboard/my-courses"
                 className="text-yellow-300 transition-colors duration-200 ease-linear bg-richblack-700 px-3 py-2 rounded-md hover:bg-richblack-800 hover:underline text-sm"
               >
                 View All
@@ -128,4 +128,4 @@ const Admin = () => {
   )
 }
 
-export default Admin;
+export default Instructor;

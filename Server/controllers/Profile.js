@@ -354,13 +354,13 @@ exports.getEnrolledCourses = async (req, res) => {
     }
 };
 
-exports.AdminDashboard=async(req,res)=>
+exports.instructorDashboard=async(req,res)=>
 {
     try{
 
-        
+        const {id}= req.user;
        // const InstructorId=req.user.id;
-          const courseDetails=await Course.find() 
+          const courseDetails=await Course.find({ instructor: id }) 
           
           const courseData=courseDetails.map((course)=>
         {
@@ -394,3 +394,94 @@ exports.AdminDashboard=async(req,res)=>
         })
     }
 }
+
+
+ exports.AdminDashboard = async (req, res) => {
+  try {
+    const courseStats = await Course.aggregate([
+      {
+        $lookup: {
+          from: "users",
+          localField: "instructor",
+          foreignField: "_id",
+          as: "instructor",
+        },
+      },
+      { $unwind: "$instructor" },
+
+      {
+        $project: {
+          _id: 1,
+          courseName: "$Name",
+          courseDescription: "$courseDescription",
+          totalStudentsEnrolled: { $size: "$studentsEnrolled" },
+          totalAmountGenerated: {
+            $multiply: [{ $size: "$studentsEnrolled" }, "$price"],
+          },
+          instructorId: "$instructor._id",
+          instructorName: {
+            $concat: [
+              "$instructor.firstName",
+              " ",
+              "$instructor.lastName",
+            ],
+          },
+        },
+      },
+    ]);
+
+     
+    // TOP COURSE
+  
+    const topCourses = [...courseStats].sort((a, b) => b.totalAmountGenerated - a.totalAmountGenerated)
+      .slice(0, 5);
+
+     
+    // INSTRUCTOR  
+     
+    const instructorMap = {};
+
+    courseStats.forEach((course) => {
+      if (!instructorMap[course.instructorId]) {
+        instructorMap[course.instructorId] = {
+          instructorId: course.instructorId,
+          name: course.instructorName,
+          totalCourses: 0,
+          totalStudents: 0,
+          totalRevenue: 0,
+        };
+      }
+
+      instructorMap[course.instructorId].totalCourses += 1;
+      instructorMap[course.instructorId].totalStudents +=
+        course.totalStudentsEnrolled;
+      instructorMap[course.instructorId].totalRevenue +=
+        course.totalAmountGenerated;
+    });
+
+    const topInstructors = Object.values(instructorMap)
+      .sort((a, b) => b.totalRevenue - a.totalRevenue)
+      .slice(0, 5);
+
+     
+    
+    
+    res.status(200).json({
+      success: true,
+      courses: courseStats,      //  for charts
+      topCourses,                // TOP 5 course
+      topInstructors,            // TOP 5 instrucitors
+      instructors: Object.values(instructorMap), // list of instructors
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching admin dashboard data",
+      error: error.message,
+    });
+  }
+};
+
+
+

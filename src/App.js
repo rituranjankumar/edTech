@@ -19,7 +19,7 @@ import PrivateRoute from "./components/core/Auth/PrivateRoutes"
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourse";
 import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse";
-import { useState } from "react";
+ 
 import InstructorCourse from "./components/core/Dashboard/MyCourses/InstructorCourse";
 import { useDispatch, useSelector } from "react-redux";
 import Catalog from "./pages/Catalog";
@@ -32,11 +32,12 @@ import { setToken } from "./slices/authSlice";
 import { setUser } from "./slices/profileSlice";
 import toast from "react-hot-toast";
  import PendingVerification from "./components/InstructorVerfication/PendingVerification";
-import VerifyInstructor from "./components/InstructorVerfication/InstructorVerificationByAdmin";
+ 
 import InstructorVerificationByAdmin from "./components/InstructorVerfication/InstructorVerificationByAdmin";
 import CreateCategory from "./components/core/Dashboard/CreateCategory";
-import Admin from "./components/core/Dashboard/Admin/Admin";
+import Admin from "./components/core/Dashboard/Instructor/Instructor";
 import AdminCourse from "./components/core/Dashboard/MyCourses/AdminCourses";
+import AdminDashboard from "./components/core/Dashboard/AdminDashboard/AdminDashboard";
 
 function App() {
 
@@ -172,8 +173,9 @@ useEffect(() => {
           <Route path="enrolled-courses" element={<EnrolledCourses />} />
             {user && (user.accountType==="Instructor" ) && (<Route path="my-courses" element={<InstructorCourse/>}/>)}
              {user && (user.accountType==="Admin") && (<Route path="Admin-courses" element={<AdminCourse/>}/>)}
+             {user && (user.accountType==="Admin") && (<Route path="admin-Dashboard" element={<AdminDashboard/>}/>)}
           {user && user.accountType==="Instructor" && (<Route path="add-course" element={<AddCourse/>}/>)}
-           {user && user.accountType==="Admin" && (<Route path="admin" element={<Admin/>}/>)}
+           {user && user.accountType==="Instructor" && (<Route path="instructor" element={<Admin/>}/>)}
         </Route>
 
         <Route path="catalog/:catalogName" element={<Catalog/>}/>
