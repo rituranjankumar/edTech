@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import InstructorChart from "../Instructor/InstructorChart";
 import { HiHandRaised } from "react-icons/hi2";
 import { fetchAdminCourses, getAdminDashData } from "../../../../services/operations/courseDetailsAPI";
-import StatCard from "./topInstructor";
-import InsightCard from "./topCourses";
+ import StatCard from "./StatCard"
+ 
 import TopCourses from "./topCourses";
 import TopInstructors from "./topInstructor";
 
