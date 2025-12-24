@@ -369,12 +369,20 @@ exports.createAdmin = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+            const profileDetails = await Profile.create({
+            gender: null,
+            dateOfBirth: null,
+            about: null,
+            contactNumber: null,
+            countrycode:null
+        })
     const newAdmin = await User.create({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      role: "Admin",
+      additionalDetails:profileDetails._id,
+      accountType: "Admin",
     });
 
     res.status(201).json({
@@ -390,6 +398,7 @@ exports.createAdmin = async (req, res) => {
     console.error(error);
     res.status(500).json({
       success: false,
+      error:error,
       message: "Failed to create admin",
     });
   }

@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaUserShield } from "react-icons/fa";
+import { apiConnector } from "../../../../services/apiconnector";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const AddAdminForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+    const [loading,setLoading]=useState(false)
+    const {token} =useSelector((state) =>state.auth)
+    const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -15,8 +21,35 @@ const AddAdminForm = () => {
     },
   });
 
-  const createAccount = (data) => {
-    console.log("form data is ", data);
+  const createAccount = async(data) => {
+
+    setLoading(true);
+     const toastId=toast.loading("Creating Admin...");
+    try{
+     
+
+          const response =await apiConnector("POST",`${REACT_APP_BASE_URL}/auth/create-admin`,data,{
+            Authorization:`Bearer ${token}`
+          })
+
+          if(response?.data?.success)
+          {
+            toast.success("Admin Created Successfully");
+             
+          }
+    }catch(error)
+    {
+      toast.error(error?.response?.data?.message || "Failed to create admin");
+      console.log("ERROR IN CREATING ADMIN ",error);
+    }
+    finally{
+      toast.dismiss(toastId)
+       setLoading(false)
+       reset();
+    }
+   //console.log("form data is ", data);
+
+   
   };
 
   return (
@@ -126,6 +159,7 @@ const AddAdminForm = () => {
 
         {/* Submit */}
         <button
+            disabled={loading}
           type="submit"
           className="w-full bg-yellow-50 text-richblack-900 py-2 rounded-md font-semibold hover:bg-yellow-100 transition"
         >

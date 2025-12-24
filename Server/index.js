@@ -77,7 +77,7 @@ const profileRoutes = require("./routes/Profile");
 const paymentRoutes = require("./routes/Payments");
 const courseRoutes = require("./routes/Course");
 const ContactUsRoute=require("./routes/ContactUsRoute");
- const cartRoutes=require("./routes/Cart")
+const cartRoutes=require("./routes/Cart")
 
 
 //mount routes
