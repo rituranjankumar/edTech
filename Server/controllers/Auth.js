@@ -61,6 +61,7 @@ require("dotenv").config();
 
         res.status(200).json({
             success: true,
+            data:otp,
             message: `OTP sent successfully ${otp}`
         });
 

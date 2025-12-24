@@ -10,7 +10,7 @@ function ForgotPassword() {
   const [emailSent, setEmailSent] = useState(false)
   const dispatch = useDispatch()
   const { loading } = useSelector((state) => state.auth)
-
+const {passwordResetUrl : passwordResetToken} = useSelector((state) => state.auth)
   const handleOnSubmit = (e) => {
     e.preventDefault()
     dispatch(getPasswordResetToken(email, setEmailSent))
@@ -30,6 +30,31 @@ function ForgotPassword() {
           ? "Have no fear. We'll email you instructions to reset your password. If you dont have access to your email we can try account recovery"
           : `We have sent the reset email to ${email}`}
       </p>
+
+      {emailSent && (
+  <div className="rounded-lg border border-yellow-400 bg-yellow-50 p-4 mt-4">
+    <p className="font-semibold text-yellow-800">
+      ⚠️ Demo Mode – Email Delivery Disabled
+    </p>
+
+    <p className="mt-1 text-sm text-yellow-700">
+      This application is running in <strong>demo mode</strong>. 
+      The password reset email is normally sent to your email address, 
+      but email delivery is disabled because production email services 
+      require a verified domain.
+    </p>
+
+    <p className="mt-2 text-sm text-yellow-700">
+      For demonstration purposes, the password reset link is displayed below.
+      In a real production environment, you would receive this link in your inbox.
+    </p>
+
+    <a href={passwordResetToken} className="mt-3 break-all text-blue-600 underline">
+      {passwordResetToken}
+    </a>
+  </div>
+)}
+
       <form onSubmit={handleOnSubmit}>
         {!emailSent && (
           <label className="w-full">
@@ -54,9 +79,9 @@ function ForgotPassword() {
           {!emailSent ? "Submit" : "Resend Email"}
         </button>
       </form>
-      <div className="mt-4 sm:mt-6 flex items-center justify-between">
+      <div className="mt-4 sm:mt-6 bg-yellow-50 w-fit p-2.5 rounded-md hover:bg-yellow-400 transition-all duration-200 flex items-center justify-between">
         <Link to="/login">
-          <p className="flex items-center gap-x-2 text-richblack-5 text-sm sm:text-base">
+          <p className="flex items-center gap-x-2   text-richblack-900 text-sm sm:text-base">
             <BiArrowBack /> Back To Login
           </p>
         </Link>

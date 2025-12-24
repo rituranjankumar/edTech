@@ -47,7 +47,8 @@ try{
     //return response
     return res.status(200).json({
         success:true,
-        message:"password reset generated and send to email"
+        message:"password reset generated and send to email",
+        data:url,
     })
 }
 catch(error)

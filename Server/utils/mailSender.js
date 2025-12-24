@@ -1,49 +1,37 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 require("dotenv").config();
 
-const SMTP_HOST = process.env.SMTP_HOST;
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587", 10);
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASS = process.env.SMTP_PASS;
-const MAIL_FROM = process.env.MAIL_FROM || `EdTech <kunal50639@gmail.com>`;
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Initialize transporter once (reuse for all sends)
-let transporter = null;
-if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
-  transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_PORT === 465,
-    auth: {
-      user: SMTP_USER,
-      pass: SMTP_PASS,
-    },
-  });
-
-  // Verify at startup (async, don't block)
-  transporter.verify()
-    .then(() => console.log("mailSender: SMTP transporter verified"))
-    .catch((err) => console.error("mailSender: transporter verify failed -", err && (err.message || err)));
-}
+const MAIL_FROM = "onboarding@resend.dev"; // default Resend domain
 
 const mailSender = async (email, title, body) => {
   try {
-    if (!transporter) {
-      throw new Error("SMTP transporter not configured (missing SMTP_HOST, SMTP_USER, SMTP_PASS)");
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is not configured");
     }
 
-    const info = await transporter.sendMail({
+    const response = await resend.emails.send({
       from: MAIL_FROM,
-      to: email,
+      to: email,          // string or array
       subject: title,
       html: body,
     });
 
-    console.log("mailSender: email sent to", email, "messageId:", info.messageId);
-    return info;
+    console.log(
+      "mailSender: email sent to",
+      email,
+      "messageId:",
+      response?.data?.id
+    );
+
+    return response;
   } catch (error) {
-    console.error("mailSender error:", error && (error.stack || error.message || error));
-    throw error;  
+    console.error(
+      "mailSender error:",
+      error?.message || error
+    );
+    throw error;
   }
 };
 

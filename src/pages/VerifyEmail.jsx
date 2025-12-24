@@ -6,13 +6,14 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { sendOtp, signUp } from "../services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function VerifyEmail() {
   const [otp, setOtp] = useState("");
   const { signupData, loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const {otp:currentOtp}=useSelector((state) => state.auth)
   useEffect(() => {
     // Only allow access of this route when user has filled the signup form
     if (!signupData) {
@@ -21,6 +22,10 @@ function VerifyEmail() {
     
   }, []);
 
+  useEffect(()=>
+  {
+    setOtp("");
+  },[currentOtp])
   const handleVerifyAndSignup = (e) => {
     e.preventDefault();
     const {
@@ -30,8 +35,13 @@ function VerifyEmail() {
       email,
       password,
       confirmPassword,
+     
     } = signupData;
-
+        if(otp != currentOtp)
+        {
+          toast.error("Invalid OTP (Demo Mode)")
+              return
+        }
     dispatch(
       signUp(
         accountType,
@@ -60,6 +70,31 @@ function VerifyEmail() {
       <p className="text-base sm:text-[1.125rem] leading-[1.625rem] my-3 sm:my-4 text-richblack-100">
         A verification code has been sent to you. Enter the code below
       </p>
+              <div className="rounded-lg border border-yellow-400 bg-yellow-50 p-4">
+  <p className="font-semibold text-yellow-800">
+    ⚠️ Demo Mode – Email Delivery Disabled
+  </p>
+
+ <p className="mt-1 text-sm text-yellow-700">
+  This application is running in <strong>demo mode</strong>.  
+  Although the email request is generated for the provided email address,
+  actual email delivery is disabled because production email services
+  require a verified domain.
+</p>
+
+
+  <p className="mt-2 text-sm text-yellow-700">
+    For demonstration and testing purposes, the One-Time Password (OTP)
+    is displayed directly on the screen. In a production environment,
+    this OTP would be sent securely to the user’s email address.
+  </p>
+
+  <p className="mt-3 text-lg font-bold tracking-widest text-yellow-900">
+    OTP: {currentOtp}
+  </p>
+</div>
+
+
       <form onSubmit={handleVerifyAndSignup}>
         <OtpInput
           value={otp}
@@ -95,7 +130,7 @@ function VerifyEmail() {
         </Link>
         <button
           className="flex items-center text-blue-100 gap-x-2 text-sm sm:text-base"
-          onClick={() => dispatch(sendOtp(signupData.email, navigate))}
+          onClick={() => dispatch(sendOtp(signupData.email))}
         >
           <RxCountdownTimer />
           Resend it

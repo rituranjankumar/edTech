@@ -1,12 +1,12 @@
 import { toast } from "react-hot-toast"
  
-import { setLoading, setToken } from "../../slices/authSlice"
+import { setLoading, setOtp, setPasswordReset, setToken } from "../../slices/authSlice"
 import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { endpoints } from "../apis"
 import { settingsEndpoints,profileEndpoints } from "../apis"
-import { loadUserCartAPI } from "./CartApi"
+ 
 const {
   SENDOTP_API,
   SIGNUP_API,
@@ -96,7 +96,11 @@ export function sendOtp(email, navigate) {
       }
 
       toast.success("OTP Sent Successfully")
+      dispatch(setOtp(response.data.data))
+       if (navigate) {
       navigate("/verify-email")
+    }
+     
     } catch (error) {
    //   console.log("SENDOTP API ERROR............", error)
       toast.error("Could Not Send OTP")
@@ -202,7 +206,10 @@ export function getPasswordResetToken(email, setEmailSent) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-
+      if(response.data.success)
+      {
+        dispatch(setPasswordReset(response?.data?.data))
+      }
       toast.success("Reset Email Sent")
       setEmailSent(true)
     } catch (error) {
