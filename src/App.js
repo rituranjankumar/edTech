@@ -38,6 +38,7 @@ import CreateCategory from "./components/core/Dashboard/CreateCategory";
 import Admin from "./components/core/Dashboard/Instructor/Instructor";
 import AdminCourse from "./components/core/Dashboard/MyCourses/AdminCourses";
 import AdminDashboard from "./components/core/Dashboard/AdminDashboard/AdminDashboard";
+import AddAdminForm from "./components/core/Dashboard/AddAdmin/AddAdminForm";
 
 function App() {
 
@@ -174,6 +175,7 @@ useEffect(() => {
             {user && (user.accountType==="Instructor" ) && (<Route path="my-courses" element={<InstructorCourse/>}/>)}
              {user && (user.accountType==="Admin") && (<Route path="Admin-courses" element={<AdminCourse/>}/>)}
              {user && (user.accountType==="Admin") && (<Route path="admin-Dashboard" element={<AdminDashboard/>}/>)}
+             {user && (user.accountType==="Admin") && (<Route path="create-admin" element={<AddAdminForm/>}/>)}
           {user && user.accountType==="Instructor" && (<Route path="add-course" element={<AddCourse/>}/>)}
            {user && user.accountType==="Instructor" && (<Route path="instructor" element={<Admin/>}/>)}
         </Route>

@@ -118,7 +118,8 @@ exports.isInstructor = async (req, res, next) => {
 exports.isAdmin = async (req, res, next) => {
 
     try {
-        const role = req.user.accountType;
+        console.log(req.user?.accountType)
+        const role = req.user?.accountType;
         if (role !== "Admin") {
             return res.status(401).json({
                 success: false,
@@ -127,6 +128,7 @@ exports.isAdmin = async (req, res, next) => {
         }
         next();
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             success: false,
             message: "  role cannot be verified "
